@@ -6,6 +6,17 @@ package ru.nsu;
 public class HeapSort {
 
     /**
+     * @param arr Array where swap performs in.
+     * @param i   First element to swap.
+     * @param j   Second element to swap.
+     */
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    /**
      * Implementation of heapsort algorithm. Runs in O(n * log(n)).
      *
      * @param arr The array to be sorted.
@@ -18,9 +29,7 @@ public class HeapSort {
         }
 
         for (int i = N - 1; i > 0; i--) {
-            int temp = arr[0];
-            arr[0] = arr[i];
-            arr[i] = temp;
+            swap(arr, 0, i);
 
             heapify(arr, i, 0);
         }
@@ -30,8 +39,8 @@ public class HeapSort {
      * Static method, which turns regular array into correct max-heap.
      *
      * @param arr Array that would be heapified.
-     * @param N Size of heap.
-     * @param i Index of root of subtree.
+     * @param N   Size of heap.
+     * @param i   Index of root of subtree.
      */
     static void heapify(int[] arr, int N, int i) {
         int largest = i;
@@ -47,12 +56,15 @@ public class HeapSort {
         }
 
         if (largest != i) {
-            int swap = arr[i];
-            arr[i] = arr[largest];
-            arr[largest] = swap;
+            swap(arr, i, largest);
 
             heapify(arr, N, largest);
         }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {-5, 10, 4, 3, 21, 0, -89, -2};
+        sort(arr);
     }
 }
 

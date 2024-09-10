@@ -62,6 +62,11 @@ public class HeapSort {
         }
     }
 
+    /**
+     * Main method that sorts an array.
+     *
+     * @param args Arguments from cli.
+     */
     public static void main(String[] args) {
         int[] arr = {-5, 10, 4, 3, 21, 0, -89, -2};
         sort(arr);

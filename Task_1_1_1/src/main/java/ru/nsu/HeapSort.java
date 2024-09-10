@@ -6,6 +6,8 @@ package ru.nsu;
 public class HeapSort {
 
     /**
+     * Swap method for two elements in array.
+     *
      * @param arr Array where swap performs in.
      * @param i   First element to swap.
      * @param j   Second element to swap.

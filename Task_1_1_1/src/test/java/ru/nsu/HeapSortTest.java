@@ -59,4 +59,22 @@ public class HeapSortTest {
         HeapSort.sort(givenArray);
         assertArrayEquals(givenArray, expectedArray);
     }
+
+    @Test
+    public void testSwap() {
+        int[] givenArray = {0, 0, 0, 0, 1, 2, 0, 0, 0};
+        int[] expectedArray = {0, 0, 0, 0, 2, 1, 0, 0, 0};
+
+        HeapSort.swap(givenArray, 4, 5);
+        assertArrayEquals(givenArray, expectedArray);
+    }
+
+    @Test
+    public void testSwapSameElement() {
+        int[] givenArray = {0, 0, 0, 0, 2, 1, 0, 0, 0};
+        int[] expectedArray = {0, 0, 0, 0, 2, 1, 0, 0, 0};
+
+        HeapSort.swap(givenArray, 0, 0);
+        assertArrayEquals(givenArray, expectedArray);
+    }
 }

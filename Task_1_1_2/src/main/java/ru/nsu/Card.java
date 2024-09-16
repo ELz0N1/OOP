@@ -50,14 +50,23 @@ public class Card {
     private final CardValue value;
     private boolean hidden;
 
+    /**
+     * @return Returns value of card.
+     */
     CardValue getValue() {
         return this.value;
     }
 
+    /**
+     * @return Returns is card hidden.
+     */
     boolean isHidden() {
         return this.hidden;
     }
 
+    /**
+     * Sets card to hidden.
+     */
     void setHidden(boolean hidden) {
         this.hidden = hidden;
     }

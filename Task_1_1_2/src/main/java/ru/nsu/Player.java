@@ -31,8 +31,8 @@ public class Player {
 
     Player(CardDeck deck) {
         this.hand = new ArrayList<>();
-        addCard(deck.peekCard());
-        addCard(deck.peekCard());
+        addCard(deck.pickCard());
+        addCard(deck.pickCard());
     }
 
     /**

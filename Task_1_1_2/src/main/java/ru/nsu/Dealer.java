@@ -2,7 +2,7 @@ package ru.nsu;
 
 public class Dealer extends Player {
 
-    final static int DEALER_MAX = 19;
+    final static int MAX = 19;
 
     Dealer(CardDeck deck) {
         super(deck);

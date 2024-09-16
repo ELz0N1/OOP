@@ -11,9 +11,9 @@ public class TestDeck {
     void testDeck() {
         CardDeck deck = new CardDeck();
         for (int i = 0; i < 52; i++) {
-            deck.peekCard();
+            deck.pickCard();
         }
-        Assertions.assertThrows(NoSuchElementException.class, deck::peekCard);
+        Assertions.assertThrows(NoSuchElementException.class, deck::pickCard);
     }
 }
 

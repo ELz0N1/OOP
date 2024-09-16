@@ -2,17 +2,26 @@ package ru.nsu;
 
 import java.util.Scanner;
 
+/**
+ * Variants of hand state.
+ */
 enum HandState {
     BlackJack,
     OverHead,
     NotEnough,
 }
 
+/**
+ * Variants of turns in game.
+ */
 enum Turn {
     DealerTurn,
     PlayerTurn,
 }
 
+/**
+ * Player's input values.
+ */
 enum PlayerInput {
     Continue(1),
     Stop(0);
@@ -23,6 +32,9 @@ enum PlayerInput {
     }
 }
 
+/**
+ * Variants of round result.
+ */
 enum Result {
     NotDecided,
     PlayerWon,
@@ -30,6 +42,9 @@ enum Result {
     Draw,
 }
 
+/**
+ * Blackjack game class implementation.
+ */
 class Blackjack {
 
     private class GameState {
@@ -61,6 +76,11 @@ class Blackjack {
             in = new Scanner(System.in);
         }
 
+        /**
+         * Gets player's input value.
+         *
+         * @return boolean value to continue or stop player's turn.
+         */
         boolean getInput() {
             System.out.println(askForInput);
             int input = in.nextInt();
@@ -73,6 +93,9 @@ class Blackjack {
             return getInput();
         }
 
+        /**
+         * Prints current turn.
+         */
         void turnName() {
             String message = "";
             if (state.turn == Turn.PlayerTurn) {
@@ -84,6 +107,11 @@ class Blackjack {
             System.out.print(message);
         }
 
+        /**
+         * Prints opened card.
+         *
+         * @param card Card that opened.
+         */
         void openCard(Card card) {
             String message = "";
             if (state.turn == Turn.PlayerTurn) {
@@ -99,6 +127,9 @@ class Blackjack {
             System.out.print(message + "\n");
         }
 
+        /**
+         * Prints player's and dealer's hands.
+         */
         void printHands() {
             String message = "  Ваши карты: " + state.player.toString() +
                 " ⇒ " + state.player.getSum() + "\n";
@@ -109,12 +140,18 @@ class Blackjack {
             System.out.print(message + "\n\n");
         }
 
+        /**
+         * Prints start round information.
+         */
         void roundStart() {
             String string = String.format("Раунд %d\nДилер раздал карты", round);
             System.out.println(string);
             printHands();
         }
 
+        /**
+         * Prints result of round.
+         */
         void printResult() {
             String message = "";
             if (state.result == Result.DealerWon) {
@@ -148,6 +185,9 @@ class Blackjack {
         round = 1;
     }
 
+    /**
+     * Method to run game.
+     */
     void run() {
         System.out.println("Добро пожаловать в блэкджек!");
         while (true) {
@@ -156,6 +196,9 @@ class Blackjack {
         }
     }
 
+    /**
+     * Main game loop.
+     */
     void gameloop() {
         state = new GameState();
         state.roundEnded = false;
@@ -188,6 +231,11 @@ class Blackjack {
         console.printResult();
     }
 
+    /**
+     * Start of round.
+     *
+     * @return Returns
+     */
     Result start() {
         console.roundStart();
         Result result = checkState();
@@ -197,6 +245,9 @@ class Blackjack {
         return result;
     }
 
+    /**
+     * Adds points to winner of round.
+     */
     void addPoints() {
         Result result = checkState();
         if (result == Result.DealerWon) {
@@ -213,8 +264,8 @@ class Blackjack {
         console.openCard(card);
         console.printHands();
         while (checkCondition(state.dealer) == HandState.NotEnough &&
-            state.dealer.getSum() < Dealer.DEALER_MAX) {
-            card = state.deck.peekCard();
+            state.dealer.getSum() < Dealer.MAX) {
+            card = state.deck.pickCard();
             state.dealer.addCard(card);
             console.openCard(card);
             console.printHands();
@@ -227,7 +278,7 @@ class Blackjack {
         state.turn = Turn.PlayerTurn;
         console.turnName();
         while (checkCondition(state.player) == HandState.NotEnough && console.getInput()) {
-            Card card = state.deck.peekCard();
+            Card card = state.deck.pickCard();
             state.player.addCard(card);
             console.openCard(card);
             console.printHands();
@@ -236,6 +287,11 @@ class Blackjack {
         return checkState();
     }
 
+    /**
+     * Method to check state of game.
+     *
+     * @return round results.
+     */
     Result checkState() {
         HandState player = checkCondition(state.player);
         HandState dealer = checkCondition(state.dealer);
@@ -259,6 +315,12 @@ class Blackjack {
         return Result.NotDecided;
     }
 
+    /**
+     * Method to check hand condition of player.
+     *
+     * @param player Player to check hand condition.
+     * @return Current player's hand condition.
+     */
     HandState checkCondition(Player player) {
         if (player.getSum() > 21) {
             return HandState.OverHead;

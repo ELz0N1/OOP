@@ -17,7 +17,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("nsu.")
+    mainClass.set("ru.nsu.Main")
 }
 
 tasks.named<Test>("test") {

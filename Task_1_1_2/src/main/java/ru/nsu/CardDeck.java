@@ -19,7 +19,12 @@ public class CardDeck {
         Collections.shuffle(cards);
     }
 
-    public Card peekCard() {
+    /**
+     * Picks top card from deck.
+     *
+     * @return picked card.
+     */
+    public Card pickCard() {
         if (cards.isEmpty()) {
             throw new NoSuchElementException("deck is empty");
         }

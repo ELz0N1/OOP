@@ -1,8 +1,11 @@
 package ru.nsu;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
+/**
+ * Class for testing card names.
+ */
 public class TestCard {
 
     static void assertStrEquals(Object obj1, Object obj2) {

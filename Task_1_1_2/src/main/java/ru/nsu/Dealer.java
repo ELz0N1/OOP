@@ -1,5 +1,8 @@
 package ru.nsu;
 
+/**
+ * Dealer class implementation.
+ */
 public class Dealer extends Player {
 
     final static int MAX = 19;

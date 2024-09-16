@@ -1,10 +1,12 @@
 package ru.nsu;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 import java.util.NoSuchElementException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-
+/**
+ * Class for testing a deck.
+ */
 public class TestDeck {
 
     @Test

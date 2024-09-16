@@ -1,5 +1,8 @@
 package ru.nsu;
 
+/**
+ * Main class.
+ */
 public class Main {
 
     /**

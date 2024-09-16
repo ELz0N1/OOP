@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Deck of playing cards implementation.
+ */
 public class CardDeck {
 
     List<Card> cards;

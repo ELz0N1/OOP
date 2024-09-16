@@ -66,13 +66,13 @@ class Blackjack {
         }
     }
 
-    private class IO {
+    private class GameIo {
 
         Scanner in;
         private static final String askForInput =
             "Введите \"1\", чтобы взять карту, и \"0\", чтобы остановиться...";
 
-        IO() {
+        GameIo() {
             in = new Scanner(System.in);
         }
 
@@ -131,8 +131,8 @@ class Blackjack {
          * Prints player's and dealer's hands.
          */
         void printHands() {
-            String message = "  Ваши карты: " + state.player.toString() +
-                " ⇒ " + state.player.getSum() + "\n";
+            String message = "  Ваши карты: " + state.player.toString()
+                + " ⇒ " + state.player.getSum() + "\n";
             message += "  Карты дилера: " + state.dealer.toString();
             if (state.turn == Turn.DealerTurn) {
                 message += " ⇒ " + state.dealer.getSum();
@@ -161,8 +161,8 @@ class Blackjack {
             } else {
                 message += "Ничья! ";
             }
-            message += " Счёт " + playerPoints + ":" +
-                dealerPoints + " ";
+            message += " Счёт " + playerPoints + ":"
+                + dealerPoints + " ";
             if (playerPoints > dealerPoints) {
                 message += "в вашу пользу";
             } else if (dealerPoints > playerPoints) {
@@ -176,10 +176,10 @@ class Blackjack {
     int playerPoints;
     int dealerPoints;
     GameState state;
-    IO console;
+    GameIo console;
 
     Blackjack() {
-        console = new IO();
+        console = new GameIo();
         playerPoints = 0;
         dealerPoints = 0;
         round = 1;
@@ -263,8 +263,8 @@ class Blackjack {
         Card card = state.dealer.hand.getLast();
         console.openCard(card);
         console.printHands();
-        while (checkCondition(state.dealer) == HandState.NotEnough &&
-            state.dealer.getSum() < Dealer.MAX) {
+        while (checkCondition(state.dealer) == HandState.NotEnough
+            && state.dealer.getSum() < Dealer.MAX) {
             card = state.deck.pickCard();
             state.dealer.addCard(card);
             console.openCard(card);

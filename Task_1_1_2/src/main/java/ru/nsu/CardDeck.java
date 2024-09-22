@@ -13,7 +13,7 @@ public class CardDeck {
     List<Card> cards;
 
     CardDeck() {
-        cards = new ArrayList<Card>();
+        cards = new ArrayList<>();
         for (CardSuit suit : CardSuit.values()) {
             for (CardValue value : CardValue.values()) {
                 cards.add(new Card(suit, value));
@@ -26,6 +26,7 @@ public class CardDeck {
      * Picks top card from deck.
      *
      * @return picked card.
+     * @throws NoSuchElementException if deck is already empty and there is no card to pick.
      */
     public Card pickCard() {
         if (cards.isEmpty()) {

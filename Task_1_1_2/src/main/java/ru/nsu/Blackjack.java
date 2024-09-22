@@ -2,6 +2,7 @@ package ru.nsu;
 
 import java.util.Scanner;
 
+
 /**
  * Variants of hand state.
  */
@@ -80,17 +81,28 @@ class Blackjack {
          * Gets player's input value.
          *
          * @return boolean value to continue or stop player's turn.
+         * @throws InvalidInputException if input value mismatch the given options.
          */
         boolean getInput() {
+            Scanner scanner = new Scanner(System.in);
             System.out.println(askForInput);
-            int input = in.nextInt();
-            if (input == PlayerInput.Continue.value) {
-                return true;
-            } else if (input == PlayerInput.Stop.value) {
-                return false;
+
+            while (true) {
+                try {
+                    int input = scanner.nextInt();
+                    if (input == PlayerInput.Continue.value) {
+                        return true;
+                    } else if (input == PlayerInput.Stop.value) {
+                        return false;
+                    }
+                    if (input != 0 && input != 1) {
+                        throw new InvalidInputException("Неправильный ввод, повторите ещё раз: ");
+                    }
+                } catch (InvalidInputException e) {
+                    System.out.println(e.getMessage());
+
+                }
             }
-            System.out.println("Неправильный ввод, повторите ещё раз: ");
-            return getInput();
         }
 
         /**
@@ -120,7 +132,6 @@ class Blackjack {
                 message += "Дилер открывает ";
                 if (card.isHidden()) {
                     message += "закрытую ";
-                    state.dealer.openCard();
                 }
                 message += "карту " + card.toString();
             }
@@ -203,12 +214,7 @@ class Blackjack {
         state = new GameState();
         state.roundEnded = false;
 
-        state.result = start();
-        if (state.result != Result.NotDecided) {
-            addPoints();
-            console.printResult();
-            return;
-        }
+        console.roundStart();
 
         state.result = handlePlayer();
         if (state.result != Result.NotDecided) {
@@ -231,19 +237,6 @@ class Blackjack {
         console.printResult();
     }
 
-    /**
-     * Start of round.
-     *
-     * @return Returns
-     */
-    Result start() {
-        console.roundStart();
-        Result result = checkState();
-        if (result == Result.DealerWon) {
-            handleDealer();
-        }
-        return result;
-    }
 
     /**
      * Adds points to winner of round.
@@ -257,10 +250,16 @@ class Blackjack {
         }
     }
 
+    /**
+     * Dealer's turn.
+     *
+     * @return result of dealer's turn.
+     */
     Result handleDealer() {
         state.turn = Turn.DealerTurn;
         console.turnName();
         Card card = state.dealer.hand.getLast();
+        state.dealer.openCard();
         console.openCard(card);
         console.printHands();
         while (checkCondition(state.dealer) == HandState.NotEnough
@@ -269,11 +268,15 @@ class Blackjack {
             state.dealer.addCard(card);
             console.openCard(card);
             console.printHands();
-
         }
         return checkState();
     }
 
+    /**
+     * Player's turn.
+     *
+     * @return result of player's turn.
+     */
     Result handlePlayer() {
         state.turn = Turn.PlayerTurn;
         console.turnName();

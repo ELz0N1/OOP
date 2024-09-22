@@ -2,7 +2,6 @@ package ru.nsu;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -10,7 +9,7 @@ import java.util.NoSuchElementException;
  */
 public class CardDeck {
 
-    List<Card> cards;
+    ArrayList<Card> cards;
 
     CardDeck() {
         cards = new ArrayList<>();
@@ -32,7 +31,8 @@ public class CardDeck {
         if (cards.isEmpty()) {
             throw new NoSuchElementException("deck is empty");
         }
-        return cards.removeLast();
-    }
+//        return cards.removeLast();
+        return cards.remove(cards.size() - 1);
 
+    }
 }

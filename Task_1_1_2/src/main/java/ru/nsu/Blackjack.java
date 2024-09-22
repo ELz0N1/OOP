@@ -258,7 +258,8 @@ class Blackjack {
     Result handleDealer() {
         state.turn = Turn.DealerTurn;
         console.turnName();
-        Card card = state.dealer.hand.getLast();
+//        Card card = state.dealer.hand.getLast();
+        Card card = state.dealer.hand.get(state.dealer.hand.size() - 1);
         state.dealer.openCard();
         console.openCard(card);
         console.printHands();

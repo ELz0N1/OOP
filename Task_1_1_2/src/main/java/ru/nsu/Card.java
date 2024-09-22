@@ -11,6 +11,8 @@ public class Card {
     private boolean hidden;
 
     /**
+     * Method to get card value.
+     *
      * @return Returns value of card.
      */
     CardValue getValue() {
@@ -18,6 +20,8 @@ public class Card {
     }
 
     /**
+     * Method to get visibility of card.
+     *
      * @return Returns is card hidden.
      */
     boolean isHidden() {

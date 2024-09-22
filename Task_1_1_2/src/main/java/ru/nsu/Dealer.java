@@ -9,7 +9,7 @@ public class Dealer extends Player {
 
     Dealer(CardDeck deck) {
         super(deck);
-//        hand.getLast().setHidden(true);
+        // hand.getLast().setHidden(true);
         hand.get(hand.size() - 1).setHidden(true);
 
     }

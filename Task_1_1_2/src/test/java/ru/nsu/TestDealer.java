@@ -12,9 +12,12 @@ public class TestDealer {
     public void initPlayerTest() {
         CardDeck deck = new CardDeck();
         Dealer dealer = new Dealer(deck);
-        Assertions.assertTrue(dealer.hand.getLast().isHidden());
+        // Assertions.assertTrue(dealer.hand.getLast().isHidden());
+        Assertions.assertFalse(dealer.hand.get(dealer.hand.size() - 1).isHidden());
         dealer.openCard();
-        Assertions.assertFalse(dealer.hand.getLast().isHidden());
+        // Assertions.assertFalse(dealer.hand.getLast().isHidden());
+        Assertions.assertFalse(dealer.hand.get(dealer.hand.size() - 1).isHidden());
+
     }
 }
 

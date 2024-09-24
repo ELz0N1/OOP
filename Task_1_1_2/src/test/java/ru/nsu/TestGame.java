@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.Blackjack.GameIo;
 import ru.nsu.Blackjack.GameState;
 
-
+/**
+ * Class for testing game methods.
+ */
 public class TestGame {
 
     @Test

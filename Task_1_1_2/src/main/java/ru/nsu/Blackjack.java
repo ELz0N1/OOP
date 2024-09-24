@@ -48,6 +48,9 @@ enum Result {
  */
 public class Blackjack {
 
+    /**
+     * State of game class implementation.
+     */
     public static class GameState {
 
         CardDeck deck;
@@ -67,6 +70,9 @@ public class Blackjack {
         }
     }
 
+    /**
+     * Game i/o class implementation.
+     */
     public class GameIo {
 
         Scanner in;

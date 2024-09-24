@@ -46,9 +46,9 @@ enum Result {
 /**
  * Blackjack game class implementation.
  */
-class Blackjack {
+public class Blackjack {
 
-    private class GameState {
+    public static class GameState {
 
         CardDeck deck;
         Player player;
@@ -67,7 +67,7 @@ class Blackjack {
         }
     }
 
-    private class GameIo {
+    public class GameIo {
 
         Scanner in;
         private static final String askForInput =
@@ -83,8 +83,9 @@ class Blackjack {
          * @return boolean value to continue or stop player's turn.
          * @throws InvalidInputException if input value mismatch the given options.
          */
-        boolean getInput() {
-            Scanner scanner = new Scanner(System.in);
+        //test
+        boolean getInput(Scanner scanner) {
+            // Scanner scanner = new Scanner(System.in);
             System.out.println(askForInput);
 
             while (true) {
@@ -255,6 +256,7 @@ class Blackjack {
      *
      * @return result of dealer's turn.
      */
+    // test
     Result handleDealer() {
         state.turn = Turn.DealerTurn;
         console.turnName();
@@ -281,11 +283,14 @@ class Blackjack {
     Result handlePlayer() {
         state.turn = Turn.PlayerTurn;
         console.turnName();
-        while (checkCondition(state.player) == HandState.NotEnough && console.getInput()) {
+        Scanner scanner = new Scanner(System.in);
+        while (checkCondition(state.player) == HandState.NotEnough && console.getInput(scanner)) {
             Card card = state.deck.pickCard();
             state.player.addCard(card);
             console.openCard(card);
             console.printHands();
+            scanner = new Scanner(System.in);
+
         }
         state.turn = Turn.DealerTurn;
         return checkState();
@@ -296,6 +301,7 @@ class Blackjack {
      *
      * @return round results.
      */
+    // test
     Result checkState() {
         HandState player = checkCondition(state.player);
         HandState dealer = checkCondition(state.dealer);

@@ -7,7 +7,8 @@ import java.util.HashMap;
  */
 public class Sub extends Expression {
 
-    private final Expression left, right;
+    private final Expression left;
+    private final Expression right;
 
     /**
      * Constructs subtraction expression.

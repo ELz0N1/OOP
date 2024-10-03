@@ -10,7 +10,7 @@ public class Variable extends Expression {
     private final String name;
 
     /**
-     * Constructs a variable expression
+     * Constructs a variable expression.
      *
      * @param name name of variable.
      */

@@ -18,6 +18,8 @@ public abstract class Expression {
     }
 
     /**
+     * Calculates the derivative of an expression.
+     *
      * @param variable the variable by which the derivative is to be calculated.
      * @return derivative of this expression.
      */

@@ -214,15 +214,17 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>protected abstract int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#safeEval()">safeEval</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i6" class="altColor">
 <td class="colFirst"><code>abstract <a href="Expression.html" title="class in ru.nsu">Expression</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplify()">simplify</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Simplifies the expression.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>protected abstract int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplifyEval()">simplifyEval</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Evaluates expression to simplify.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
@@ -354,18 +356,21 @@ extends java.lang.Object</pre>
 <div class="block">Checks do the expression has variable.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>returns true if expression contains variable otherwise false.</dd>
 </dl>
 </li>
 </ul>
-<a id="safeEval()">
+<a id="simplifyEval()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>safeEval</h4>
-<pre class="methodSignature">protected abstract&nbsp;int&nbsp;safeEval()</pre>
+<h4>simplifyEval</h4>
+<pre class="methodSignature">protected abstract&nbsp;int&nbsp;simplifyEval()</pre>
+<div class="block">Evaluates expression to simplify.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>result of expression.</dd>
 </dl>
 </li>
 </ul>

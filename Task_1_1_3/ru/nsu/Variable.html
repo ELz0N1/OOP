@@ -203,15 +203,17 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>protected int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#safeEval()">safeEval</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplify()">simplify</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Simplifies the expression.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>protected int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplifyEval()">simplifyEval</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Evaluates expression to simplify.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -338,20 +340,24 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Expression.html#hasVariable()">hasVariable</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>returns true if expression contains variable otherwise false.</dd>
 </dl>
 </li>
 </ul>
-<a id="safeEval()">
+<a id="simplifyEval()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>safeEval</h4>
-<pre class="methodSignature">protected&nbsp;int&nbsp;safeEval()</pre>
+<h4>simplifyEval</h4>
+<pre class="methodSignature">protected&nbsp;int&nbsp;simplifyEval()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Expression.html#simplifyEval()">Expression</a></code></span></div>
+<div class="block">Evaluates expression to simplify.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Expression.html#safeEval()">safeEval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></dd>
+<dd><code><a href="Expression.html#simplifyEval()">simplifyEval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>result of expression.</dd>
 </dl>
 </li>
 </ul>

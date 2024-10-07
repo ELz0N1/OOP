@@ -30,6 +30,31 @@ public class Variable extends Expression {
 
     @Override
     public int evalHelper(HashMap<String, Integer> variables) {
-        return variables.getOrDefault(name, 0);
+        try {
+            if (variables == null || !variables.containsKey(name)) {
+                throw new ValueErrorException("Variable " + name + " has no value!");
+            }
+        } catch (ValueErrorException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+        return variables.get(name);
+    }
+
+    @Override
+    protected boolean hasVariable() {
+        return true;
+    }
+
+    @Override
+    protected int safeEval() {
+        System.err.println("Can't evaluate variable");
+        System.exit(1);
+        return 1;
+    }
+
+    @Override
+    public Expression simplify() {
+        return new Variable(name);
     }
 }

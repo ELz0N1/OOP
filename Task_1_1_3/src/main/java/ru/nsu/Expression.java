@@ -61,4 +61,24 @@ public abstract class Expression {
         }
         return variableValues;
     }
+
+    /**
+     * Checks do the expression has variable.
+     *
+     * @return
+     */
+    protected abstract boolean hasVariable();
+
+    /**
+     *
+     * @return
+     */
+    protected abstract int safeEval();
+
+    /**
+     * Simplifies the expression.
+     *
+     * @return simplified expression.
+     */
+    public abstract Expression simplify();
 }

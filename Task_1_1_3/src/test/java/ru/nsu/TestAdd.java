@@ -37,4 +37,18 @@ public class TestAdd {
         int result = e.eval("x = 10; y = 13");
         Assertions.assertEquals(result, 23);
     }
+
+    @Test
+    public void testSimplify1() {
+        Expression e = new Add(new Add(new Variable("x"), new Add(new Number(5),
+            new Number(4))), new Number(0));
+        Assertions.assertEquals(e.simplify().toString(), "(x+9)");
+    }
+
+    @Test
+    public void testSimplify2() {
+        Expression e = new Add(new Number(0), new Add(new Variable("x"),
+            new Add(new Number(4), new Number(5))));
+        Assertions.assertEquals(e.simplify().toString(), "(x+9)");
+    }
 }

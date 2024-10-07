@@ -32,4 +32,19 @@ class Number extends Expression {
     public int evalHelper(HashMap<String, Integer> variables) {
         return value;
     }
+
+    @Override
+    protected boolean hasVariable() {
+        return false;
+    }
+
+    @Override
+    protected int safeEval() {
+        return value;
+    }
+
+    @Override
+    public Expression simplify() {
+        return new Number(value);
+    }
 }

@@ -46,4 +46,25 @@ public class TestSub {
         int result = e.eval("x = 10; y = 13");
         Assertions.assertEquals(result, -17);
     }
+
+    @Test
+    public void testSimplify1() {
+        Expression e = new Sub(new Sub(new Add(new Number(1), new Number(1)), new Variable("x")),
+            new Sub(new Number(2), new Variable("x")));
+        Assertions.assertEquals(e.simplify().toString(), "0");
+    }
+
+    @Test
+    public void testSimplify2() {
+        Expression e = new Sub(new Sub(new Variable("y"),
+            new Add(new Number(1), new Number(2))), new Number(0));
+        Assertions.assertEquals(e.simplify().toString(), "(y-3)");
+    }
+
+    @Test
+    public void testSimplify3() {
+        Expression e = new Sub(new Number(0),
+            new Sub(new Variable("x"), new Sub(new Number(3), new Number(2))));
+        Assertions.assertEquals(e.simplify().toString(), "(x-1)");
+    }
 }

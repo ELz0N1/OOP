@@ -37,4 +37,39 @@ public class Add extends Expression {
         return left.evalHelper(variables)
             + right.evalHelper(variables);
     }
+
+
+    @Override
+    protected boolean hasVariable() {
+        return right.hasVariable() || left.hasVariable();
+    }
+
+    @Override
+    protected int safeEval() {
+        return left.safeEval() + right.safeEval();
+
+    }
+
+    @Override
+    public Expression simplify() {
+        if (!hasVariable()) {
+            return new Number(safeEval());
+        }
+        Expression newLeft = left.simplify();
+        Expression newRight = right.simplify();
+
+        if (!newLeft.hasVariable()) {
+            int leftResult = newLeft.safeEval();
+            if (leftResult == 0) {
+                return newRight;
+            }
+        }
+        if (!newRight.hasVariable()) {
+            int rightResult = newRight.safeEval();
+            if (rightResult == 0) {
+                return newLeft;
+            }
+        }
+        return new Add(newLeft, newRight);
+    }
 }

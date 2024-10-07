@@ -30,7 +30,13 @@ public class TestVariable {
     @Test
     public void testEval() {
         Expression e = new Variable("y");
-        int result = e.eval("y = 23");
-        Assertions.assertEquals(result, 23);
+        int result = e.eval("y = 90");
+        Assertions.assertEquals(result, 90);
+    }
+
+    @Test
+    public void testSimplify() {
+        Expression e = new Variable("y");
+        Assertions.assertEquals(e.simplify().toString(), "y");
     }
 }

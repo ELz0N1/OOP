@@ -25,4 +25,10 @@ public class TestNumber {
         int result = e.eval("x = 99");
         Assertions.assertEquals(result, 52);
     }
+
+    @Test
+    public void testSimplify() {
+        Expression e = new Number(67);
+        Assertions.assertEquals(e.simplify().toString(), "67");
+    }
 }

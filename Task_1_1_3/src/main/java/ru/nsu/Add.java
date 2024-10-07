@@ -45,27 +45,27 @@ public class Add extends Expression {
     }
 
     @Override
-    protected int safeEval() {
-        return left.safeEval() + right.safeEval();
+    protected int simplifyEval() {
+        return left.simplifyEval() + right.simplifyEval();
 
     }
 
     @Override
     public Expression simplify() {
         if (!hasVariable()) {
-            return new Number(safeEval());
+            return new Number(simplifyEval());
         }
         Expression newLeft = left.simplify();
         Expression newRight = right.simplify();
 
         if (!newLeft.hasVariable()) {
-            int leftResult = newLeft.safeEval();
+            int leftResult = newLeft.simplifyEval();
             if (leftResult == 0) {
                 return newRight;
             }
         }
         if (!newRight.hasVariable()) {
-            int rightResult = newRight.safeEval();
+            int rightResult = newRight.simplifyEval();
             if (rightResult == 0) {
                 return newLeft;
             }

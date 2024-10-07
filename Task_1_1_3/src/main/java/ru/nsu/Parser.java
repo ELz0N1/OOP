@@ -53,10 +53,11 @@ public class Parser {
     }
 
     /**
+     * Gets substring of string on given interval.
      *
-     * @param str given string.
+     * @param str   given string.
      * @param start start index.
-     * @param end end index.
+     * @param end   end index.
      * @return substring of string on given interval.
      */
     private static char[] getSubstring(char[] str, int start, int end) {

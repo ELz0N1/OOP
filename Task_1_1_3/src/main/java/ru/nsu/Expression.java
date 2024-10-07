@@ -65,15 +65,16 @@ public abstract class Expression {
     /**
      * Checks do the expression has variable.
      *
-     * @return
+     * @return returns true if expression contains variable otherwise false.
      */
     protected abstract boolean hasVariable();
 
     /**
+     * Evaluates expression to simplify.
      *
-     * @return
+     * @return result of expression.
      */
-    protected abstract int safeEval();
+    protected abstract int simplifyEval();
 
     /**
      * Simplifies the expression.

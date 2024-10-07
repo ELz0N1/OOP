@@ -47,7 +47,7 @@ public class Variable extends Expression {
     }
 
     @Override
-    protected int safeEval() {
+    protected int simplifyEval() {
         System.err.println("Can't evaluate variable");
         System.exit(1);
         return 1;

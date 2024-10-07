@@ -39,7 +39,7 @@ class Number extends Expression {
     }
 
     @Override
-    protected int safeEval() {
+    protected int simplifyEval() {
         return value;
     }
 

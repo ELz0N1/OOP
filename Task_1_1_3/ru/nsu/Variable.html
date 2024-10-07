@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -196,6 +196,25 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasVariable()">hasVariable</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Checks do the expression has variable.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>protected int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#safeEval()">safeEval</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#simplify()">simplify</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Simplifies the expression.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -290,7 +309,7 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 <a id="evalHelper(java.util.HashMap)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>evalHelper</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;evalHelper&#8203;(java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Integer&gt;&nbsp;variables)</pre>
@@ -303,6 +322,53 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 <dd><code>variables</code> - hashMap of variables with theirs values.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>result of expression.</dd>
+</dl>
+</li>
+</ul>
+<a id="hasVariable()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hasVariable</h4>
+<pre class="methodSignature">protected&nbsp;boolean&nbsp;hasVariable()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Expression.html#hasVariable()">Expression</a></code></span></div>
+<div class="block">Checks do the expression has variable.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Expression.html#hasVariable()">hasVariable</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+</dl>
+</li>
+</ul>
+<a id="safeEval()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>safeEval</h4>
+<pre class="methodSignature">protected&nbsp;int&nbsp;safeEval()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Expression.html#safeEval()">safeEval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+</dl>
+</li>
+</ul>
+<a id="simplify()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>simplify</h4>
+<pre class="methodSignature">public&nbsp;<a href="Expression.html" title="class in ru.nsu">Expression</a>&nbsp;simplify()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Expression.html#simplify()">Expression</a></code></span></div>
+<div class="block">Simplifies the expression.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>simplified expression.</dd>
 </dl>
 </li>
 </ul>

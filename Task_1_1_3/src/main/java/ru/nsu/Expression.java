@@ -38,6 +38,7 @@ public abstract class Expression {
      *
      * @param variables designation of variables using {@code ;}.
      * @return result of expression.
+     * @throws ValueErrorException if variable has no value to evaluate.
      */
     public int eval(String variables) {
         HashMap<String, Integer> dictVars = getVariables(variables);
@@ -56,7 +57,12 @@ public abstract class Expression {
         for (String assignment : assignments) {
             String[] parts = assignment.split("=");
             String variable = parts[0].trim();
-            int value = Integer.parseInt(parts[1].trim());
+            int value;
+            try {
+                value = Integer.parseInt(parts[1].trim());
+            } catch (NumberFormatException e) {
+                throw new ValueErrorException("Wrong value for variable " + variable);
+            }
             variableValues.put(variable, value);
         }
         return variableValues;

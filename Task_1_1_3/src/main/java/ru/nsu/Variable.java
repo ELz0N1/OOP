@@ -29,14 +29,9 @@ public class Variable extends Expression {
     }
 
     @Override
-    public int evalHelper(HashMap<String, Integer> variables) {
-        try {
-            if (variables == null || !variables.containsKey(name)) {
-                throw new ValueErrorException("Variable " + name + " has no value!");
-            }
-        } catch (ValueErrorException e) {
-            System.out.println(e.getMessage());
-            System.exit(1);
+    public int evalHelper(HashMap<String, Integer> variables) throws ValueErrorException {
+        if (variables == null || !variables.containsKey(name)) {
+            throw new ValueErrorException("Variable " + name + " has no value!");
         }
         return variables.get(name);
     }
@@ -47,10 +42,8 @@ public class Variable extends Expression {
     }
 
     @Override
-    protected int simplifyEval() {
-        System.err.println("Can't evaluate variable");
-        System.exit(1);
-        return 1;
+    protected int simplifyEval() throws VariableEvalException {
+        throw new VariableEvalException("Can't evaluate variable" + name);
     }
 
     @Override

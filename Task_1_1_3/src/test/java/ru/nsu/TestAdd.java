@@ -51,4 +51,18 @@ public class TestAdd {
             new Add(new Number(4), new Number(5))));
         Assertions.assertEquals(e.simplify().toString(), "(x+9)");
     }
+
+    @Test
+    public void testSimplify3() {
+        Expression e = new Add(new Number(0), new Add(new Number(9),
+            new Add(new Number(4), new Number(5))));
+        Assertions.assertEquals(e.simplify().toString(), "18");
+    }
+
+    @Test
+    public void testSimplify4() {
+        Expression e = new Add(new Number(2),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "3");
+    }
 }

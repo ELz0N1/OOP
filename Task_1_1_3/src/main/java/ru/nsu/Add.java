@@ -70,6 +70,11 @@ public class Add extends Expression {
                 return newLeft;
             }
         }
-        return new Add(newLeft, newRight);
+
+        if (!newLeft.hasVariable() && !newRight.hasVariable()) {
+            return new Add(newLeft, newRight).simplify();
+        } else {
+            return new Add(newLeft, newRight);
+        }
     }
 }

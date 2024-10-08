@@ -3,7 +3,7 @@ package ru.nsu;
 /**
  * Class of Value Error Exception.
  */
-public class ValueErrorException extends Exception {
+public class ValueErrorException extends RuntimeException {
 
     /**
      * Construct new exception.

@@ -314,7 +314,8 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>evalHelper</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;evalHelper&#8203;(java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Integer&gt;&nbsp;variables)</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;evalHelper&#8203;(java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Integer&gt;&nbsp;variables)
+               throws <a href="ValueErrorException.html" title="class in ru.nsu">ValueErrorException</a></pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Expression.html#evalHelper(java.util.HashMap)">Expression</a></code></span></div>
 <div class="block">Implements of <a href="Expression.html#eval(java.lang.String)"><code>Expression.eval(java.lang.String)</code></a> method.</div>
 <dl>
@@ -324,6 +325,8 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 <dd><code>variables</code> - hashMap of variables with theirs values.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>result of expression.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="ValueErrorException.html" title="class in ru.nsu">ValueErrorException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -350,7 +353,8 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>simplifyEval</h4>
-<pre class="methodSignature">protected&nbsp;int&nbsp;simplifyEval()</pre>
+<pre class="methodSignature">protected&nbsp;int&nbsp;simplifyEval()
+                    throws <a href="VariableEvalException.html" title="class in ru.nsu">VariableEvalException</a></pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Expression.html#simplifyEval()">Expression</a></code></span></div>
 <div class="block">Evaluates expression to simplify.</div>
 <dl>
@@ -358,6 +362,8 @@ extends <a href="Expression.html" title="class in ru.nsu">Expression</a></pre>
 <dd><code><a href="Expression.html#simplifyEval()">simplifyEval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu">Expression</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>result of expression.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="VariableEvalException.html" title="class in ru.nsu">VariableEvalException</a></code></dd>
 </dl>
 </li>
 </ul>

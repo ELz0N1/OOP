@@ -62,6 +62,10 @@ class Div extends Expression {
         Expression newLeft = left.simplify();
         Expression newRight = right.simplify();
 
+        if (!newLeft.hasVariable() && !newRight.hasVariable()) {
+            return new Number(newLeft.simplifyEval() / newRight.simplifyEval());
+        }
+
         if (!newRight.hasVariable()) {
             int rightResult = newRight.simplifyEval();
             if (rightResult == 1) {

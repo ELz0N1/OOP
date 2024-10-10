@@ -58,6 +58,10 @@ public class Add extends Expression {
         Expression newLeft = left.simplify();
         Expression newRight = right.simplify();
 
+        if (!newLeft.hasVariable() && !newRight.hasVariable()) {
+            return new Number(newLeft.simplifyEval() + newRight.simplifyEval());
+        }
+
         if (!newLeft.hasVariable()) {
             int leftResult = newLeft.simplifyEval();
             if (leftResult == 0) {
@@ -70,11 +74,6 @@ public class Add extends Expression {
                 return newLeft;
             }
         }
-
-        if (!newLeft.hasVariable() && !newRight.hasVariable()) {
-            return new Add(newLeft, newRight).simplify();
-        } else {
-            return new Add(newLeft, newRight);
-        }
+        return new Add(newLeft, newRight);
     }
 }

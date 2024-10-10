@@ -65,4 +65,11 @@ public class TestAdd {
             new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
         Assertions.assertEquals(e.simplify().toString(), "3");
     }
+
+    @Test
+    public void testSimplify5() {
+        Expression e = new Add(new Add(new Mul(new Variable("y"), new Number(0)), new Number(2)),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "3");
+    }
 }

@@ -45,4 +45,18 @@ public class TestDiv {
         Expression e = new Div(new Div(new Number(0), new Variable("x")), new Number(10));
         Assertions.assertEquals(e.simplify().toString(), "0");
     }
+
+    @Test
+    public void testSimplify4() {
+        Expression e = new Div(new Number(2),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "2");
+    }
+
+    @Test
+    public void testSimplify5() {
+        Expression e = new Div(new Div(new Mul(new Variable("y"), new Number(0)), new Number(2)),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "0");
+    }
 }

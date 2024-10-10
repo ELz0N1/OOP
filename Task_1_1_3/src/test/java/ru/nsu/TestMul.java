@@ -62,4 +62,18 @@ public class TestMul {
             new Mul(new Number(4), new Variable("y")));
         Assertions.assertEquals(e.simplify().toString(), "(4*y)");
     }
+
+    @Test
+    public void testSimplify5() {
+        Expression e = new Mul(new Number(2),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "2");
+    }
+
+    @Test
+    public void testSimplify6() {
+        Expression e = new Mul(new Mul(new Mul(new Variable("y"), new Number(0)), new Number(2)),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "0");
+    }
 }

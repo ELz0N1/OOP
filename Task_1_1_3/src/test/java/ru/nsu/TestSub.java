@@ -67,4 +67,18 @@ public class TestSub {
             new Sub(new Variable("x"), new Sub(new Number(3), new Number(2))));
         Assertions.assertEquals(e.simplify().toString(), "(x-1)");
     }
+
+    @Test
+    public void testSimplify4() {
+        Expression e = new Sub(new Number(2),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "1");
+    }
+
+    @Test
+    public void testSimplify5() {
+        Expression e = new Sub(new Sub(new Variable("y"), new Variable("y")),
+            new Add(new Number(1), new Mul(new Number(0), new Variable("x"))));
+        Assertions.assertEquals(e.simplify().toString(), "-1");
+    }
 }

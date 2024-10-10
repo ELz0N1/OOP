@@ -55,6 +55,10 @@ public class Sub extends Expression {
         Expression newLeft = left.simplify();
         Expression newRight = right.simplify();
 
+        if (!newLeft.hasVariable() && !newRight.hasVariable()) {
+            return new Number(newLeft.simplifyEval() - newRight.simplifyEval());
+        }
+
         if (!newLeft.hasVariable()) {
             int leftResult = newLeft.simplifyEval();
             if (leftResult == 0) {

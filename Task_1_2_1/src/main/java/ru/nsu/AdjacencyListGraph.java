@@ -1,6 +1,10 @@
 package ru.nsu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashMap;
+
 
 public class AdjacencyListGraph implements Graph {
 
@@ -29,13 +33,6 @@ public class AdjacencyListGraph implements Graph {
                 neighbors.remove(vertex);
             }
         }
-
-        // че надо это не?
-//        for (int i = maxVertexAmount - 1; i >= 0; i--) {
-//            if (hasVertex(i)) {
-//                maxVertexAmount = i;
-//            }
-//        }
     }
 
     @Override

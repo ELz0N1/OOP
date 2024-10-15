@@ -1,11 +1,10 @@
 package ru.nsu;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
+import org.junit.jupiter.api.Test;
 public class TestIncidenceMatrixGraph {
 
     private IncidenceMatrixGraph graph;

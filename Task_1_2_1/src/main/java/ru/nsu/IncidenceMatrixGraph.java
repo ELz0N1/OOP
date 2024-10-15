@@ -1,6 +1,7 @@
 package ru.nsu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IncidenceMatrixGraph implements Graph {
 

@@ -3,6 +3,9 @@ package ru.nsu;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for managing incidence matrix graph.
+ */
 public class IncidenceMatrixGraph implements Graph {
 
     private int[][] incidenceMatrix;
@@ -13,7 +16,9 @@ public class IncidenceMatrixGraph implements Graph {
     private int edgesCapacity;
     private int maxVertexAmount;
 
-
+    /**
+     * Constructor of incidence matrix graph.
+     */
     public IncidenceMatrixGraph() {
         numVertices = 0;
         numEdges = 0;
@@ -24,6 +29,11 @@ public class IncidenceMatrixGraph implements Graph {
         maxVertexAmount = -1;
     }
 
+    /**
+     * Returns exact copy of graph.
+     *
+     * @return copy of graph.
+     */
     private int[][] copyGraph() {
         int[][] newGraph = new int[vertexCapacity][edgesCapacity];
         for (int i = 0; i < incidenceMatrix.length; i++) {
@@ -32,8 +42,13 @@ public class IncidenceMatrixGraph implements Graph {
         return newGraph;
     }
 
-    private void resizeGraphNodes(Integer node) {
-        while (node >= vertexCapacity) {
+    /**
+     * Extends capacity of vertices in incidence matrix of graph.
+     *
+     * @param vertex the number by which to increase the incidence matrix size.
+     */
+    private void resizeGraphVertices(Integer vertex) {
+        while (vertex >= vertexCapacity) {
             vertexCapacity *= 2;
         }
         incidenceMatrix = copyGraph();
@@ -42,6 +57,9 @@ public class IncidenceMatrixGraph implements Graph {
         vertexConsisted = newConsistedNodes;
     }
 
+    /**
+     * Extends by 2 capacity of edges in incidence matrix of graph.
+     */
     private void resizeGraphEdges() {
         edgesCapacity *= 2;
         incidenceMatrix = copyGraph();
@@ -50,7 +68,7 @@ public class IncidenceMatrixGraph implements Graph {
     @Override
     public void addVertex(int vertex) {
         if (vertex >= vertexCapacity) {
-            resizeGraphNodes(vertex);
+            resizeGraphVertices(vertex);
         }
         maxVertexAmount = Math.max(vertex, maxVertexAmount);
         vertexConsisted[vertex] = true;

@@ -3,6 +3,9 @@ package ru.nsu;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for managing adjacency matrix graph.
+ */
 public class AdjacencyMatrixGraph implements Graph {
 
     private int[][] adjacencyMatrix;
@@ -11,6 +14,9 @@ public class AdjacencyMatrixGraph implements Graph {
     private int capacity;
     private int maxVertexAmount;
 
+    /**
+     * Constructor of adjacency matrix graph.
+     */
     public AdjacencyMatrixGraph() {
         numVertices = 0;
         capacity = 16;

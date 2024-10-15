@@ -5,12 +5,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.HashMap;
 
-
+/**
+ * Class for managing adjacency list graph.
+ */
 public class AdjacencyListGraph implements Graph {
 
     private final HashMap<Integer, List<Integer>> adjacencyList;
     private int maxVertexAmount;
 
+    /**
+     * Constructor of adjacency list graph.
+     */
     public AdjacencyListGraph() {
         adjacencyList = new HashMap<>();
         maxVertexAmount = -1;

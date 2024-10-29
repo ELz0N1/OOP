@@ -47,7 +47,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         if (key == null || value == null) {
             throw new IllegalArgumentException("Key and value cannot be null");
         }
-        if (size() >= table.length * LOAD_FACTOR) {
+        if (size >= table.length * LOAD_FACTOR) {
             resize();
         }
         int index = hash(key);
@@ -189,7 +189,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
             return false;
         }
         HashTable other = (HashTable) obj;
-        if (size() != other.size()) {
+        if (size != other.size) {
             return false;
         }
         for (Entry<K, V> entry : this) {
@@ -227,8 +227,8 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     private class HashTableIterator implements Iterator<Entry<K, V>> {
 
         private final int expectedModCount = modCount;
-        private int currentIndex = 0;
-        private Entry<K, V> currentEntry;
+        private int currIndex = 0;
+        private Entry<K, V> currEntry;
 
         /**
          * Returns true if the iteration has more elements.
@@ -240,12 +240,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
             if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
-            while (currentIndex < table.length) {
-                if (table[currentIndex] != null) {
-                    currentEntry = table[currentIndex];
+            while (currIndex < table.length) {
+                if (table[currIndex] != null) {
+                    currEntry = table[currIndex];
                     return true;
                 }
-                currentIndex++;
+                currIndex++;
             }
             return false;
         }
@@ -263,9 +263,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            currentIndex++;
-            Entry<K, V> nextEntry = currentEntry;
-            currentEntry = currentEntry.next;
+            currIndex++;
+            Entry<K, V> nextEntry = currEntry;
+            currEntry = currEntry.next;
             return nextEntry;
         }
     }
@@ -293,10 +293,10 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      * Resizes the table when exceeds the load factor.
      */
     private void resize() {
-        Entry<K, V>[] oldTable = table;
-        table = new Entry[oldTable.length * 2];
+        Entry<K, V>[] pastTable = table;
+        table = new Entry[pastTable.length * 2];
         size = 0;
-        for (Entry<K, V> entry : oldTable) {
+        for (Entry<K, V> entry : pastTable) {
             while (entry != null) {
                 put(entry.key, entry.value);
                 entry = entry.next;

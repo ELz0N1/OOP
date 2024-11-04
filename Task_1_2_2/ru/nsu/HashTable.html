@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -233,20 +233,27 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns hash code value for this entry.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns if hashtable is empty.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="HashTable.Entry.html" title="class in ru.nsu">HashTable.Entry</a>&lt;<a href="HashTable.html" title="type parameter in HashTable">K</a>,&#8203;<a href="HashTable.html" title="type parameter in HashTable">V</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns an iterator of the elements in the hashtable.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#put(K,V)">put</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
    <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</code></th>
@@ -254,28 +261,28 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 <div class="block">Puts a key value pair to hashtable.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="HashTable.html" title="type parameter in HashTable">V</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(K)">remove</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key)</code></th>
 <td class="colLast">
 <div class="block">Method to remove a given key.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns size of hashtable.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns string representation of hashtable.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update(K,V)">update</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
       <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</code></th>
@@ -289,7 +296,7 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Iterable">
@@ -349,6 +356,8 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - key to be put in hashtable.</dd>
 <dd><code>value</code> - value to be put in hashtable.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if given key or given value is null.</dd>
 </dl>
 </li>
 </ul>
@@ -367,6 +376,8 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 <dd><code>key</code> - key to be removed.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>value of removed key else null.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if given key is null.</dd>
 </dl>
 </li>
 </ul>
@@ -385,6 +396,8 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 <dd><code>key</code> - key of which we want to know the value.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>null if the element is not found.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if given key is null.</dd>
 </dl>
 </li>
 </ul>
@@ -403,6 +416,8 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - given key.</dd>
 <dd><code>value</code> - new value.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if given key or given value is null.</dd>
 </dl>
 </li>
 </ul>
@@ -437,6 +452,22 @@ implements java.lang.Iterable&lt;<a href="HashTable.Entry.html" title="class in 
 <dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.lang.Iterable&lt;<a href="HashTable.html" title="type parameter in HashTable">K</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an iterator of the elements in the hashtable.</dd>
+</dl>
+</li>
+</ul>
+<a id="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
+<div class="block">Returns hash code value for this entry.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>hash code value for this entry.</dd>
 </dl>
 </li>
 </ul>

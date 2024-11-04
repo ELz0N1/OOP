@@ -42,6 +42,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      *
      * @param key   key to be put in hashtable.
      * @param value value to be put in hashtable.
+     * @throws IllegalArgumentException if given key or given value is null.
      */
     public void put(K key, V value) {
         if (key == null || value == null) {
@@ -77,6 +78,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      *
      * @param key key to be removed.
      * @return value of removed key else null.
+     * @throws IllegalArgumentException if given key is null.
      */
     public V remove(K key) {
         if (key == null) {
@@ -110,6 +112,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      *
      * @param key key of which we want to know the value.
      * @return null if the element is not found.
+     * @throws IllegalArgumentException if given key is null.
      */
     public V get(K key) {
         if (key == null) {
@@ -134,6 +137,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      *
      * @param key   given key.
      * @param value new value.
+     * @throws IllegalArgumentException if given key or given value is null.
      */
     public void update(K key, V value) {
         if (key == null || value == null) {
@@ -172,6 +176,20 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     @Override
     public Iterator<Entry<K, V>> iterator() {
         return new HashTableIterator();
+    }
+
+    /**
+     * Returns hash code value for this entry.
+     *
+     * @return hash code value for this entry.
+     */
+    @Override
+    public int hashCode() {
+        int hashcode = 0;
+        for (Entry<K, V> entry : this) {
+            hashcode += entry.key.hashCode() ^ entry.value.hashCode();
+        }
+        return hashcode;
     }
 
     /**

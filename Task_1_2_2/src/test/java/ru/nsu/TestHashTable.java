@@ -159,4 +159,33 @@ public class TestHashTable {
         Assertions.assertThrows(IllegalArgumentException.class, () -> hashTable.get(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> hashTable.update(null, null));
     }
+
+    @Test
+    void testPutIntoExistingKey() {
+        HashTable<String, Number> hashTable = new HashTable<>();
+
+        hashTable.put("A", 1);
+        Assertions.assertEquals(1, hashTable.get("A"));
+
+        hashTable.put("A", 2);
+        hashTable.put("A", 9);
+        Assertions.assertEquals(9, hashTable.get("A"));
+    }
+
+    @Test
+    void testHashCode() {
+        HashTable<String, Integer> thisTable = new HashTable<>();
+        HashTable<String, Integer> otherTable = new HashTable<>();
+
+        thisTable.put("abc", 1);
+        thisTable.put("qwe", 2);
+        otherTable.put("abc", 1);
+        Assertions.assertNotEquals(thisTable.hashCode(), otherTable.hashCode());
+
+        otherTable.put("qwe", 2);
+        Assertions.assertEquals(thisTable.hashCode(), otherTable.hashCode());
+
+        thisTable.remove("abc");
+        Assertions.assertNotEquals(thisTable.hashCode(), otherTable.hashCode());
+    }
 }

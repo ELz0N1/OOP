@@ -7,8 +7,8 @@ import java.nio.file.Path;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 class TestSubstringFinder {
 
@@ -90,6 +90,14 @@ class TestSubstringFinder {
     void testFindSubstringInEmptyFile() throws IOException {
         writeToFile(testFile, "");
         List<Integer> result = SubstringFinder.find(testFile.getAbsolutePath(), "blank");
+        List<Integer> expected = List.of();
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    void testFindSubstringBlankString() throws IOException {
+        writeToFile(testFile, "What's up");
+        List<Integer> result = SubstringFinder.find(testFile.getAbsolutePath(), "");
         List<Integer> expected = List.of();
         Assertions.assertEquals(expected, result);
     }

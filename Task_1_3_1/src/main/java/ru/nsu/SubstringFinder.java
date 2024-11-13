@@ -1,6 +1,8 @@
 package ru.nsu;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,21 +25,23 @@ public class SubstringFinder {
             String line;
             int offset = 0;
             while ((line = reader.readLine()) != null) {
-                int[] lps = computeLPSArray(pattern);
-                int j = 0; // Index for pattern
-                for (int i = 0; i < line.length(); i++) {
-                    while (j > 0 && line.charAt(i) != pattern.charAt(j)) {
-                        j = lps[j - 1];
+                int[] lps = computeLpsArray(pattern);
+                if (lps != null) {
+                    int j = 0; // Index for pattern
+                    for (int i = 0; i < line.length(); i++) {
+                        while (j > 0 && line.charAt(i) != pattern.charAt(j)) {
+                            j = lps[j - 1];
+                        }
+                        if (line.charAt(i) == pattern.charAt(j)) {
+                            j++;
+                        }
+                        if (j == pattern.length()) {
+                            indices.add(offset + i - j + 1);
+                            j = lps[j - 1]; // Move pattern back
+                        }
                     }
-                    if (line.charAt(i) == pattern.charAt(j)) {
-                        j++;
-                    }
-                    if (j == pattern.length()) {
-                        indices.add(offset + i - j + 1);
-                        j = lps[j - 1]; // Move pattern back
-                    }
+                    offset += line.length() + 1;
                 }
-                offset += line.length() + 1;
             }
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
@@ -52,7 +56,10 @@ public class SubstringFinder {
      * @param pattern the substring for which to build the LPS array.
      * @return the LPS array.
      */
-    private static int[] computeLPSArray(String pattern) {
+    private static int[] computeLpsArray(String pattern) {
+        if (pattern.isEmpty()) {
+            return null;
+        }
         int[] lps = new int[pattern.length()];
         int length = 0;
         lps[0] = 0;

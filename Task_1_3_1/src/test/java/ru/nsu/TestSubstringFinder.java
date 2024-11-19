@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,14 @@ class TestSubstringFinder {
     @BeforeEach
     void setUp() {
         testFile = tempDir.resolve("testFile.txt").toFile();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (testFile != null && testFile.exists()) {
+            boolean deleted = testFile.delete();
+            Assertions.assertTrue(deleted);
+        }
     }
 
     @Test
@@ -140,6 +149,20 @@ class TestSubstringFinder {
 
         List<Integer> result = SubstringFinder.find(testFile.getAbsolutePath(), "b");
         List<Integer> expected = List.of(1024 * 1024 * 1024); // 1GB
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    void testFindSubstringPatternLargerThanBuffer() throws IOException {
+        String pattern = "abc".repeat(176000); // 1056000 Bytes > CHUNK_SIZE
+
+        try (FileWriter writer = new FileWriter(testFile)) {
+            writer.write("aaaaa");
+            writer.write(pattern);
+        }
+
+        List<Integer> result = SubstringFinder.find(testFile.getAbsolutePath(), pattern);
+        List<Integer> expected = List.of(5);
         Assertions.assertEquals(expected, result);
     }
 }

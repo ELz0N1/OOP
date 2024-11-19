@@ -110,4 +110,36 @@ class TestSubstringFinder {
         List<Integer> expected = List.of();
         Assertions.assertEquals(expected, result);
     }
+
+    @Test
+    void testFindSubstringUnicodeSymbols() throws IOException {
+        writeToFile(testFile, "This is unicode symbol: 😀");
+        List<Integer> result = SubstringFinder.find(testFile.getAbsolutePath(), "😀");
+
+        List<Integer> expected = List.of(24);
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    void testFindSubstringPatternWithNewline() throws IOException {
+        writeToFile(testFile, "Hello\nWorld");
+        List<Integer> result = SubstringFinder.find(testFile.getAbsolutePath(), "Hello\nWorld");
+
+        List<Integer> expected = List.of(0);
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    void testFindSubstringBigFile() throws IOException {
+        try (FileWriter writer = new FileWriter(testFile)) {
+            for (int i = 0; i < 1024 * 1024 * 1024; i++) { // 1GB
+                writer.write("a");
+            }
+            writer.write("b");
+        }
+
+        List<Integer> result = SubstringFinder.find(testFile.getAbsolutePath(), "b");
+        List<Integer> expected = List.of(1024 * 1024 * 1024); // 1GB
+        Assertions.assertEquals(expected, result);
+    }
 }

@@ -1,8 +1,9 @@
 package ru.nsu;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import java.util.List;
  * A class for finding all occurrences of a given substring within a file.
  */
 public class SubstringFinder {
+
+    private static final int CHUNK_SIZE = 1024 * 1024; // 1MB chunk size
 
     /**
      * Searches for all occurrences of a given substring in a file and returns a list of starting
@@ -19,32 +22,57 @@ public class SubstringFinder {
      * @param pattern  the substring to search for in the file.
      * @return a list of starting indices of each occurrence of the substring.
      */
-    public static List<Integer> find(String fileName, String pattern) {
+    public static List<Integer> find(String fileName, String pattern) throws IOException {
         List<Integer> indices = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
+        try (FileInputStream fis = new FileInputStream(fileName);
+            InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8)) {
+
+            char[] buffer = new char[CHUNK_SIZE];
+            int bytesRead;
             int offset = 0;
-            while ((line = reader.readLine()) != null) {
-                int[] lps = computeLpsArray(pattern);
-                if (lps != null) {
-                    int j = 0; // Index for pattern
-                    for (int i = 0; i < line.length(); i++) {
-                        while (j > 0 && line.charAt(i) != pattern.charAt(j)) {
-                            j = lps[j - 1];
-                        }
-                        if (line.charAt(i) == pattern.charAt(j)) {
-                            j++;
-                        }
-                        if (j == pattern.length()) {
-                            indices.add(offset + i - j + 1);
-                            j = lps[j - 1]; // Move pattern back
-                        }
+
+            while ((bytesRead = isr.read(buffer, 0, CHUNK_SIZE)) != -1) {
+                String chunk = new String(buffer, 0, bytesRead);
+                indices.addAll(findMatches(chunk, pattern, offset));
+                offset += bytesRead;
+
+                if (bytesRead == CHUNK_SIZE && !chunk.isEmpty()) {
+                    int overlap = pattern.length() - 1;
+                    if (overlap > 0) {
+                        offset -= overlap;
                     }
-                    offset += line.length() + 1;
                 }
             }
-        } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
+        }
+        return indices;
+    }
+
+    /**
+     * Searches for all occurrences of a given substring in a text and returns a list of starting
+     * indices.
+     *
+     * @param text    the text in which to search.
+     * @param pattern the substring to search for in the file.
+     * @param offset  offset from the beginning of the file.
+     * @return a list with indices found in text.
+     */
+    private static List<Integer> findMatches(String text, String pattern, int offset) {
+        List<Integer> indices = new ArrayList<>();
+        int[] lps = computeLpsArray(pattern);
+        if (lps != null) {
+            int j = 0;
+            for (int i = 0; i < text.length(); i++) {
+                while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
+                    j = lps[j - 1];
+                }
+                if (text.charAt(i) == pattern.charAt(j)) {
+                    j++;
+                }
+                if (j == pattern.length()) {
+                    indices.add(offset + i - j + 1);
+                    j = lps[j - 1];
+                }
+            }
         }
         return indices;
     }

@@ -233,7 +233,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>find</h4>
 <pre class="methodSignature">public static&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;find&#8203;(java.lang.String&nbsp;fileName,
-                                                     java.lang.String&nbsp;pattern)</pre>
+                                                     java.lang.String&nbsp;pattern)
+                                              throws java.io.IOException</pre>
 <div class="block">Searches for all occurrences of a given substring in a file and returns a list of starting
  indices.</div>
 <dl>
@@ -242,6 +243,8 @@ extends java.lang.Object</pre>
 <dd><code>pattern</code> - the substring to search for in the file.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of starting indices of each occurrence of the substring.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
 </dl>
 </li>
 </ul>

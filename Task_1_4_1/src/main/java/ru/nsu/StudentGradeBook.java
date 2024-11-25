@@ -1,8 +1,11 @@
 package ru.nsu;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
+import java.util.stream.Collectors;
 
 /**
  * Class for managing student grade book.
@@ -92,7 +95,7 @@ public class StudentGradeBook {
             int lastSemester = lastSemesterOpt.getAsInt();
 
             return grades.stream()
-                .filter(grade -> grade.getSemester() == lastSemester).toList();
+                .filter(grade -> grade.getSemester() == lastSemester).collect(toList());
         }
         return new ArrayList<>();
     }

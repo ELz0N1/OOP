@@ -68,7 +68,7 @@ public class StudentGradeBook {
      * @return {@code true} if student can transfer to budget else {@code false}.
      */
     public boolean canTransferToBudget() {
-        if (!isPaid) {
+        if (!isPaid || getCurrentSemester() < 2) {
             return false;
         }
         long satisfactoryCount = grades.stream()
@@ -77,7 +77,9 @@ public class StudentGradeBook {
                 && grade.getControlType() == ControlType.EXAM)
             .count();
 
-        return satisfactoryCount == 0;
+        boolean hasFail = grades.stream().anyMatch(grade -> grade.getCourseGrade() == Grade.FAIL);
+
+        return satisfactoryCount == 0 && !hasFail;
     }
 
 
@@ -100,6 +102,20 @@ public class StudentGradeBook {
         return new ArrayList<>();
     }
 
+    /**
+     * Gets grades from diploma supplement.
+     *
+     * @return grades from diploma supplement.
+     */
+    private List<CourseGrade> getDiplomaSupplementGrades() {
+        return new ArrayList<>(grades.stream()
+            .collect(Collectors.toMap(
+                CourseGrade::getCourse,
+                grade -> grade,
+                (existing, replacement) -> replacement
+            )).values());
+    }
+
 
     /**
      * Calculates ability for the student to get honors diploma.
@@ -108,16 +124,17 @@ public class StudentGradeBook {
      */
     public boolean canGetHonorsDiploma() {
         if (grades.isEmpty()) {
-            return false;
+            return true;
         }
 
-        List<CourseGrade> lastGrades = getGradesForLastSemester();
+        List<CourseGrade> lastGrades = getDiplomaSupplementGrades();
         long excellentCount = lastGrades.stream()
             .filter(grade -> grade.getCourseGrade() == Grade.EXCELLENT)
             .count();
 
-        boolean hasNoSatisfactory = lastGrades.stream()
-            .noneMatch(grade -> grade.getCourseGrade() == Grade.SATISFACTORY);
+        boolean hasNoSatisfactoryAndFail = lastGrades.stream()
+            .noneMatch(grade -> grade.getCourseGrade() == Grade.SATISFACTORY
+                && grade.getCourseGrade() == Grade.FAIL);
 
         boolean thesisExcellent = lastGrades.stream()
             .anyMatch(grade -> grade.getControlType() == ControlType.THESIS
@@ -125,7 +142,7 @@ public class StudentGradeBook {
 
         double excellentPercentage = (double) excellentCount / lastGrades.size();
 
-        return excellentPercentage >= 0.75 && hasNoSatisfactory && thesisExcellent;
+        return excellentPercentage >= 0.75 && hasNoSatisfactoryAndFail && thesisExcellent;
     }
 
 
@@ -135,10 +152,8 @@ public class StudentGradeBook {
      * @return {@code true} if student can get increased scholarship else {@code false}.
      */
     public boolean canGetIncreasedScholarship() {
-
-        int currentSemester = getCurrentSemester();
-        return grades.stream().filter(grade -> grade.getSemester() == currentSemester
-                && grade.getControlType() == ControlType.EXAM)
+        List<CourseGrade> lastGrades = getGradesForLastSemester();
+        return lastGrades.stream().filter(grade -> grade.getControlType() == ControlType.EXAM)
             .allMatch(grade -> grade.getCourseGrade() == Grade.EXCELLENT);
     }
 }

@@ -56,6 +56,14 @@ public class TestStudentGradeBook {
     void testGetCurrentSemester() {
         Assertions.assertEquals(2, gradeBook.getCurrentSemester());
     }
+
+    @Test
+    void testFailGrade() {
+        gradeBook.addGrade("Mathematical logic", 2, ControlType.EXAM, Grade.FAIL);
+        Assertions.assertFalse(gradeBook.canGetIncreasedScholarship());
+        Assertions.assertFalse(gradeBook.canTransferToBudget());
+        Assertions.assertFalse(gradeBook.canGetHonorsDiploma());
+    }
 }
 
 

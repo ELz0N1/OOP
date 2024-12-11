@@ -12,7 +12,6 @@ public class AdjacencyMatrixGraph implements Graph {
     private boolean[] vertexConsisted;
     private int numVertices;
     private int capacity;
-    private int maxVertexAmount;
 
     /**
      * Constructor of adjacency matrix graph.
@@ -22,7 +21,6 @@ public class AdjacencyMatrixGraph implements Graph {
         capacity = 16;
         adjacencyMatrix = new int[capacity][capacity];
         vertexConsisted = new boolean[capacity];
-        maxVertexAmount = -1;
     }
 
     private void resizeGraph(int vertex) {
@@ -44,13 +42,12 @@ public class AdjacencyMatrixGraph implements Graph {
         if (vertex >= capacity) {
             resizeGraph(vertex);
         }
-        maxVertexAmount = Math.max(vertex, maxVertexAmount);
         vertexConsisted[vertex] = true;
         numVertices++;
     }
 
     @Override
-    public void removeVertex(int vertex) {
+    public void removeVertex(int vertex) throws NoVertexException {
         if (hasVertex(vertex)) {
             for (int i = 0; i < capacity; i++) {
                 adjacencyMatrix[i][vertex] = 0;
@@ -58,14 +55,8 @@ public class AdjacencyMatrixGraph implements Graph {
             }
             numVertices--;
             vertexConsisted[vertex] = false;
-            if (numVertices <= 0) {
-                maxVertexAmount = -1;
-            }
-            for (int i = maxVertexAmount - 1; i >= 0; i--) {
-                if (hasVertex(i)) {
-                    maxVertexAmount = i;
-                }
-            }
+        } else {
+            throw new NoVertexException(vertex);
         }
     }
 
@@ -81,9 +72,12 @@ public class AdjacencyMatrixGraph implements Graph {
     }
 
     @Override
-    public void removeEdge(int source, int destination) {
-        if (!hasVertex(source) || !hasVertex(destination)) {
-            return;
+    public void removeEdge(int source, int destination) throws NoVertexException {
+        if (!hasVertex(source)) {
+            throw new NoVertexException(source);
+        }
+        if (!hasVertex(destination)) {
+            throw new NoVertexException(destination);
         }
         adjacencyMatrix[source][destination] = 0;
     }
@@ -117,7 +111,13 @@ public class AdjacencyMatrixGraph implements Graph {
     }
 
     @Override
-    public int getMaxVertexNumber() {
-        return maxVertexAmount;
+    public List<Integer> getGraphVertices() {
+        ArrayList<Integer> vertices = new ArrayList<>();
+        for (int i = 0; i < vertexConsisted.length; i++) {
+            if (vertexConsisted[i]) { // Check if the element is true
+                vertices.add(i); // Add the index to the list
+            }
+        }
+        return vertices;
     }
 }

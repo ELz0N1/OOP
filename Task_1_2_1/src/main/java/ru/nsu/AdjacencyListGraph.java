@@ -11,32 +11,33 @@ import java.util.HashMap;
 public class AdjacencyListGraph implements Graph {
 
     private final HashMap<Integer, List<Integer>> adjacencyList;
-    private int maxVertexAmount;
 
     /**
      * Constructor of adjacency list graph.
      */
     public AdjacencyListGraph() {
         adjacencyList = new HashMap<>();
-        maxVertexAmount = -1;
     }
 
     @Override
     public void addVertex(int vertex) {
         if (!hasVertex(vertex)) {
             adjacencyList.put(vertex, new ArrayList<>());
-            maxVertexAmount = Math.max(maxVertexAmount, vertex);
         }
     }
 
     @Override
-    public void removeVertex(int vertex) {
-        adjacencyList.remove(vertex);
+    public void removeVertex(int vertex) throws NoVertexException {
+        if (hasVertex(vertex)) {
+            adjacencyList.remove(vertex);
 
-        for (List<Integer> neighbors : adjacencyList.values()) {
-            if (neighbors.contains(vertex)) {
-                neighbors.remove(vertex);
+            for (List<Integer> neighbors : adjacencyList.values()) {
+                if (neighbors.contains(vertex)) {
+                    neighbors.remove((Integer) vertex);
+                }
             }
+        } else {
+            throw new NoVertexException(vertex);
         }
     }
 
@@ -52,9 +53,12 @@ public class AdjacencyListGraph implements Graph {
     }
 
     @Override
-    public void removeEdge(int source, int destination) {
-        if (!hasVertex(source) || !hasVertex(destination)) {
-            return;
+    public void removeEdge(int source, int destination) throws NoVertexException {
+        if (!hasVertex(source)) {
+            throw new NoVertexException(source);
+        }
+        if (!hasVertex(destination)) {
+            throw new NoVertexException(destination);
         }
         adjacencyList.get(source).remove(Integer.valueOf(destination));
     }
@@ -79,7 +83,8 @@ public class AdjacencyListGraph implements Graph {
     }
 
     @Override
-    public int getMaxVertexNumber() {
-        return maxVertexAmount;
+    public List<Integer> getGraphVertices() {
+        return new ArrayList<>(adjacencyList.keySet());
     }
+
 }

@@ -1,103 +1,49 @@
 package ru.nsu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class for managing incidence matrix graph.
  */
 public class IncidenceMatrixGraph implements Graph {
 
-    private int[][] incidenceMatrix;
-    private boolean[] vertexConsisted;
-    private int numVertices;
-    private int numEdges;
-    private int vertexCapacity;
-    private int edgesCapacity;
-    private int maxVertexAmount;
+    private final Map<Integer, Integer> vertexIndexMap;
+    private final List<Integer> vertices;
+    private final List<int[]> edges;
+    private int vertexCapacity = 16;
+    private int edgesCapacity = 16;
+    private int[][] incidenceMatrix = new int[vertexCapacity][edgesCapacity];
 
     /**
      * Constructor of incidence matrix graph.
      */
     public IncidenceMatrixGraph() {
-        numVertices = 0;
-        numEdges = 0;
-        vertexCapacity = 16;
-        edgesCapacity = 16;
-        incidenceMatrix = new int[vertexCapacity][edgesCapacity];
-        vertexConsisted = new boolean[vertexCapacity];
-        maxVertexAmount = -1;
-    }
-
-    /**
-     * Returns exact copy of graph.
-     *
-     * @return copy of graph.
-     */
-    private int[][] copyGraph() {
-        int[][] newGraph = new int[vertexCapacity][edgesCapacity];
-        for (int i = 0; i < incidenceMatrix.length; i++) {
-            System.arraycopy(incidenceMatrix[i], 0, newGraph[i], 0, incidenceMatrix[i].length);
-        }
-        return newGraph;
-    }
-
-    /**
-     * Extends capacity of vertices in incidence matrix of graph.
-     *
-     * @param vertex the number by which to increase the incidence matrix size.
-     */
-    private void resizeGraphVertices(Integer vertex) {
-        while (vertex >= vertexCapacity) {
-            vertexCapacity *= 2;
-        }
-        incidenceMatrix = copyGraph();
-        boolean[] newConsistedNodes = new boolean[vertexCapacity];
-        System.arraycopy(vertexConsisted, 0, newConsistedNodes, 0, vertexConsisted.length);
-        vertexConsisted = newConsistedNodes;
-    }
-
-    /**
-     * Extends by 2 capacity of edges in incidence matrix of graph.
-     */
-    private void resizeGraphEdges() {
-        edgesCapacity *= 2;
-        incidenceMatrix = copyGraph();
+        this.vertexIndexMap = new HashMap<>();
+        this.vertices = new ArrayList<>();
+        this.edges = new ArrayList<>();
     }
 
     @Override
     public void addVertex(int vertex) {
-        if (vertex >= vertexCapacity) {
-            resizeGraphVertices(vertex);
+        if (!hasVertex(vertex)) {
+            vertexIndexMap.put(vertex, vertices.size());
+            vertices.add(vertex);
+            updateIncidenceMatrix();
         }
-        maxVertexAmount = Math.max(vertex, maxVertexAmount);
-        vertexConsisted[vertex] = true;
-        numVertices++;
     }
 
-
     @Override
-    public void removeVertex(int vertex) {
-        if (hasVertex(vertex)) {
-            for (int i = 0; i < numEdges; i++) {
-                if (incidenceMatrix[vertex][i] != 0) {
-                    for (int j = 0; j < vertexCapacity; j++) {
-                        incidenceMatrix[j][i] = 0;
-                    }
-                }
-            }
-            vertexConsisted[vertex] = false;
-            numVertices--;
-
-            if (numVertices <= 0) {
-                maxVertexAmount = -1;
-            }
-            for (int i = maxVertexAmount - 1; i >= 0; i--) {
-                if (hasVertex(i)) {
-                    maxVertexAmount = i;
-                }
-            }
+    public void removeVertex(int vertex) throws NoVertexException {
+        if (!hasVertex(vertex)) {
+            throw new NoVertexException(vertex);
         }
+        vertexIndexMap.remove(vertex);
+        vertices.remove((Integer) vertex);
+        edges.removeIf(edge -> edge[0] == vertex || edge[1] == vertex);
+        updateIncidenceMatrix();
     }
 
     @Override
@@ -108,67 +54,88 @@ public class IncidenceMatrixGraph implements Graph {
         if (!hasVertex(destination)) {
             addVertex(destination);
         }
-        if (numEdges >= edgesCapacity) {
-            resizeGraphEdges();
-        }
-        incidenceMatrix[source][numEdges] = 1;
-        incidenceMatrix[destination][numEdges] = -1;
-        numEdges++;
+        edges.add(new int[]{source, destination});
+        updateIncidenceMatrix();
     }
-
 
     @Override
-    public void removeEdge(int source, int destination) {
-        int edge = -1;
-        for (int j = 0; j < numEdges; j++) {
-            if (incidenceMatrix[source][j] == 1 && incidenceMatrix[destination][j] == -1) {
-                edge = j;
-                break;
-            }
+    public void removeEdge(int source, int destination) throws NoVertexException {
+        if (!hasVertex(source)) {
+            throw new NoVertexException(source);
         }
-        if (edge == -1) {
-            return;
+        if (!hasVertex(destination)) {
+            throw new NoVertexException(destination);
         }
-        numEdges--;
-        incidenceMatrix[source][edge] = 0;
-        incidenceMatrix[destination][edge] = 0;
+        edges.removeIf(edge -> edge[0] == source && edge[1] == destination);
+        updateIncidenceMatrix();
     }
-
 
     @Override
     public List<Integer> getNeighbors(int vertex) {
-        ArrayList<Integer> neighbors = new ArrayList<>();
-        if (!hasVertex(vertex)) {
-            return neighbors;
-        }
-        for (int i = 0; i < numEdges; i++) {
-            if (incidenceMatrix[vertex][i] == 1) {
-                for (int j = 0; j < vertexCapacity; j++) {
-                    if (incidenceMatrix[j][i] == -1) {
-                        neighbors.add(j);
-                    }
-                }
+        List<Integer> neighbors = new ArrayList<>();
+        for (int[] edge : edges) {
+            if (edge[0] == vertex) {
+                neighbors.add(edge[1]);
             }
         }
         return neighbors;
     }
 
     @Override
+    public boolean hasVertex(int vertex) {
+        return vertexIndexMap.containsKey(vertex);
+    }
+
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int vertex = 0; vertex < numVertices; vertex++) {
+        for (int vertex = 0; vertex < vertices.size(); vertex++) {
             sb.append(vertex).append(": ").append(getNeighbors(vertex)).append("\n");
         }
         return sb.toString();
     }
 
-    @Override
-    public boolean hasVertex(int vertex) {
-        return vertex >= 0 && vertex < vertexCapacity && vertexConsisted[vertex];
+    /**
+     * Resizes and fills in incidence matrix in graph.
+     */
+    private void updateIncidenceMatrix() {
+        int numVertices = vertices.size();
+        int numEdges = edges.size();
+
+        if (numVertices > vertexCapacity) {
+            vertexCapacity *= 2;
+        }
+        if (numEdges > edgesCapacity) {
+            edgesCapacity *= 2;
+        }
+        incidenceMatrix = new int[vertexCapacity][edgesCapacity];
+
+        for (int j = 0; j < numEdges; j++) {
+            int[] edge = edges.get(j);
+            int sourceIndex = vertexIndexMap.get(edge[0]);
+            int destinationIndex = vertexIndexMap.get(edge[1]);
+
+            incidenceMatrix[sourceIndex][j] = 1;
+            incidenceMatrix[destinationIndex][j] = -1;
+        }
+    }
+
+    public Integer getVertexByIndex(int index) {
+        for (Map.Entry<Integer, Integer> entry : vertexIndexMap.entrySet()) {
+            if (entry.getValue() == index) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
     @Override
-    public int getMaxVertexNumber() {
-        return maxVertexAmount;
+    public List<Integer> getGraphVertices() {
+        List<Integer> neighbors = new ArrayList<>();
+        for (Integer value : vertexIndexMap.values()) {
+            neighbors.add(getVertexByIndex(value));
+        }
+        return neighbors;
     }
 }

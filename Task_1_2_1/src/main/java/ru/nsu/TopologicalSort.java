@@ -1,8 +1,10 @@
 package ru.nsu;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Stack;
+import java.util.Set;
 
 /**
  * Class implementing topological sort.
@@ -10,42 +12,56 @@ import java.util.Stack;
 public class TopologicalSort {
 
     /**
-     * Performs depth-first search.
-     *
-     * @param vertex  first vertex;
-     * @param graph   current graph;
-     * @param visited array of visited vertices;
-     * @param stack   current stack.
-     */
-    private static void dfs(int vertex, Graph graph, boolean[] visited, Stack<Integer> stack) {
-        visited[vertex] = true;
-        for (int neighbour : graph.getNeighbors(vertex)) {
-            if (!visited[neighbour]) {
-                dfs(neighbour, graph, visited, stack);
-            }
-        }
-        stack.push(vertex);
-    }
-
-    /**
-     * Implements topological sort via dfs.
+     * Topological sort.
      *
      * @param graph graph to be sorted.
      * @return sorted graph.
+     * @throws CyclicGraphException if graph consists cycles.
      */
-    public static List<Integer> topSort(Graph graph) {
-        Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[graph.getMaxVertexNumber() + 1];
-        for (int i = 0; i <= graph.getMaxVertexNumber(); i++) {
-            if (graph.hasVertex(i) && !visited[i]) {
-                dfs(i, graph, visited, stack);
+    public List<Integer> sort(Graph graph) throws CyclicGraphException {
+        List<Integer> sorted = new ArrayList<>();
+        Set<Integer> visited = new HashSet<>();
+        Set<Integer> visiting = new HashSet<>();
+
+        for (Integer vertex : graph.getGraphVertices()) {
+            if (visited.contains(vertex)) {
+                continue;
+            }
+            if (!dfs(graph, vertex, visited, visiting, sorted)) {
+                throw new CyclicGraphException();
             }
         }
-        int n = stack.size();
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            result.add(stack.pop());
+        Collections.reverse(sorted);
+        return sorted;
+    }
+
+    /**
+     * Performs depth-first search for topological sort.
+     *
+     * @param graph    graph which contains vertices for which computes depth-first search.
+     * @param vertex   vertex for which computes depth-first search.
+     * @param visited  set of visited vertices.
+     * @param visiting set of currently visiting vertices.
+     * @param sorted   list of vertices in sorted order.
+     * @return {@code false} if cycle found in graph else {@code true}.
+     */
+    private static boolean dfs(Graph graph, Integer vertex, Set<Integer> visited,
+        Set<Integer> visiting, List<Integer> sorted) {
+        if (visiting.contains(vertex)) {
+            return false;
         }
-        return result;
+        if (visited.contains(vertex)) {
+            return true;
+        }
+        visiting.add(vertex);
+        for (Integer neighbor : graph.getNeighbors(vertex)) {
+            if (!dfs(graph, neighbor, visited, visiting, sorted)) {
+                return false;
+            }
+        }
+        visiting.remove(vertex);
+        visited.add(vertex);
+        sorted.add(vertex);
+        return true;
     }
 }

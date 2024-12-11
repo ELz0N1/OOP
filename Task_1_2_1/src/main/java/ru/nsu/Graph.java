@@ -11,7 +11,7 @@ import java.util.List;
 public interface Graph {
 
     /**
-     * Adds a vertex to the graph.
+     * Adds a vertex to the graph if the graph doesn't contain it.
      *
      * @param vertex the vertex to be added.
      */
@@ -21,11 +21,13 @@ public interface Graph {
      * Removes a vertex from the graph.
      *
      * @param vertex the vertex to be removed.
+     * @throws NoVertexException if graph doesn't contain given vertex.
      */
-    void removeVertex(int vertex);
+    void removeVertex(int vertex) throws NoVertexException;
 
     /**
-     * Adds an edge from one vertex to another.
+     * Adds an edge from one vertex to another. If graph doesn't contain the vertices of an edge
+     * they will be added.
      *
      * @param source      the vertex where the edge starts.
      * @param destination the vertex where the edge ends.
@@ -37,8 +39,9 @@ public interface Graph {
      *
      * @param source      the vertex where the edge starts.
      * @param destination the vertex where the edge ends.
+     * @throws NoVertexException if graph doesn't contain given vertices.
      */
-    void removeEdge(int source, int destination);
+    void removeEdge(int source, int destination) throws NoVertexException;
 
     /**
      * Returns a list of all neighbors of a given vertex.
@@ -80,9 +83,9 @@ public interface Graph {
     boolean hasVertex(int vertex);
 
     /**
-     * Returns the number of the maximum node.
+     * Gets all vertices graph consists.
      *
-     * @return max node's number or -1 if graph is empty.
+     * @return list of all graph vertices.
      */
-    int getMaxVertexNumber();
+    List<Integer> getGraphVertices();
 }

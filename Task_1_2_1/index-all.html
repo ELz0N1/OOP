@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="script.js"></script>
-<script type="text/javascript" src="script-dir/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="script-dir/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="index-page">
@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="ru/nsu/AdjacencyListGraph.html#addEdge(int,int)" class="member-name-link">addEdge(int, int)</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyListGraph.html" title="class in ru.nsu">AdjacencyListGraph</a></dt>
@@ -67,7 +67,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/Graph.html#addVertex(int)" class="member-name-link">addVertex(int)</a> - Method in interface ru.nsu.<a href="ru/nsu/Graph.html" title="interface in ru.nsu">Graph</a></dt>
 <dd>
-<div class="block">Adds a vertex to the graph.</div>
+<div class="block">Adds a vertex to the graph if the graph doesn't contain it.</div>
 </dd>
 <dt><a href="ru/nsu/IncidenceMatrixGraph.html#addVertex(int)" class="member-name-link">addVertex(int)</a> - Method in class ru.nsu.<a href="ru/nsu/IncidenceMatrixGraph.html" title="class in ru.nsu">IncidenceMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
@@ -88,17 +88,26 @@ loadScripts(document, 'script');</script>
 <div class="block">Constructor of adjacency matrix graph.</div>
 </dd>
 </dl>
+<h2 class="title" id="I:C">C</h2>
+<dl class="index">
+<dt><a href="ru/nsu/CyclicGraphException.html" class="type-name-link" title="class in ru.nsu">CyclicGraphException</a> - Exception in <a href="ru/nsu/package-summary.html">ru.nsu</a></dt>
+<dd>
+<div class="block">Thrown if graph contains cycle in it.</div>
+</dd>
+<dt><a href="ru/nsu/CyclicGraphException.html#%3Cinit%3E()" class="member-name-link">CyclicGraphException()</a> - Constructor for exception ru.nsu.<a href="ru/nsu/CyclicGraphException.html" title="class in ru.nsu">CyclicGraphException</a></dt>
+<dd>&nbsp;</dd>
+</dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="ru/nsu/AdjacencyListGraph.html#getMaxVertexNumber()" class="member-name-link">getMaxVertexNumber()</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyListGraph.html" title="class in ru.nsu">AdjacencyListGraph</a></dt>
+<dt><a href="ru/nsu/AdjacencyListGraph.html#getGraphVertices()" class="member-name-link">getGraphVertices()</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyListGraph.html" title="class in ru.nsu">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/AdjacencyMatrixGraph.html#getMaxVertexNumber()" class="member-name-link">getMaxVertexNumber()</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyMatrixGraph.html" title="class in ru.nsu">AdjacencyMatrixGraph</a></dt>
+<dt><a href="ru/nsu/AdjacencyMatrixGraph.html#getGraphVertices()" class="member-name-link">getGraphVertices()</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyMatrixGraph.html" title="class in ru.nsu">AdjacencyMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/Graph.html#getMaxVertexNumber()" class="member-name-link">getMaxVertexNumber()</a> - Method in interface ru.nsu.<a href="ru/nsu/Graph.html" title="interface in ru.nsu">Graph</a></dt>
+<dt><a href="ru/nsu/Graph.html#getGraphVertices()" class="member-name-link">getGraphVertices()</a> - Method in interface ru.nsu.<a href="ru/nsu/Graph.html" title="interface in ru.nsu">Graph</a></dt>
 <dd>
-<div class="block">Returns the number of the maximum node.</div>
+<div class="block">Gets all vertices graph consists.</div>
 </dd>
-<dt><a href="ru/nsu/IncidenceMatrixGraph.html#getMaxVertexNumber()" class="member-name-link">getMaxVertexNumber()</a> - Method in class ru.nsu.<a href="ru/nsu/IncidenceMatrixGraph.html" title="class in ru.nsu">IncidenceMatrixGraph</a></dt>
+<dt><a href="ru/nsu/IncidenceMatrixGraph.html#getGraphVertices()" class="member-name-link">getGraphVertices()</a> - Method in class ru.nsu.<a href="ru/nsu/IncidenceMatrixGraph.html" title="class in ru.nsu">IncidenceMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/AdjacencyListGraph.html#getNeighbors(int)" class="member-name-link">getNeighbors(int)</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyListGraph.html" title="class in ru.nsu">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
@@ -109,6 +118,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns a list of all neighbors of a given vertex.</div>
 </dd>
 <dt><a href="ru/nsu/IncidenceMatrixGraph.html#getNeighbors(int)" class="member-name-link">getNeighbors(int)</a> - Method in class ru.nsu.<a href="ru/nsu/IncidenceMatrixGraph.html" title="class in ru.nsu">IncidenceMatrixGraph</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/IncidenceMatrixGraph.html#getVertexByIndex(int)" class="member-name-link">getVertexByIndex(int)</a> - Method in class ru.nsu.<a href="ru/nsu/IncidenceMatrixGraph.html" title="class in ru.nsu">IncidenceMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/Graph.html" class="type-name-link" title="interface in ru.nsu">Graph</a> - Interface in <a href="ru/nsu/package-summary.html">ru.nsu</a></dt>
 <dd>
@@ -148,6 +159,15 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class ru.nsu.<a href="ru/nsu/Main.html" title="class in ru.nsu">Main</a></dt>
 <dd>&nbsp;</dd>
 </dl>
+<h2 class="title" id="I:N">N</h2>
+<dl class="index">
+<dt><a href="ru/nsu/NoVertexException.html" class="type-name-link" title="class in ru.nsu">NoVertexException</a> - Exception in <a href="ru/nsu/package-summary.html">ru.nsu</a></dt>
+<dd>
+<div class="block">Thrown if graph doesn't contain given vertex.</div>
+</dd>
+<dt><a href="ru/nsu/NoVertexException.html#%3Cinit%3E(int)" class="member-name-link">NoVertexException(int)</a> - Constructor for exception ru.nsu.<a href="ru/nsu/NoVertexException.html" title="class in ru.nsu">NoVertexException</a></dt>
+<dd>&nbsp;</dd>
+</dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
 <dt><a href="ru/nsu/Graph.html#readFromFile(java.nio.file.Path)" class="member-name-link">readFromFile(Path)</a> - Method in interface ru.nsu.<a href="ru/nsu/Graph.html" title="interface in ru.nsu">Graph</a></dt>
@@ -177,6 +197,13 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/package-summary.html">ru.nsu</a> - package ru.nsu</dt>
 <dd>&nbsp;</dd>
 </dl>
+<h2 class="title" id="I:S">S</h2>
+<dl class="index">
+<dt><a href="ru/nsu/TopologicalSort.html#sort(ru.nsu.Graph)" class="member-name-link">sort(Graph)</a> - Method in class ru.nsu.<a href="ru/nsu/TopologicalSort.html" title="class in ru.nsu">TopologicalSort</a></dt>
+<dd>
+<div class="block">Topological sort.</div>
+</dd>
+</dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
 <dt><a href="ru/nsu/TopologicalSort.html" class="type-name-link" title="class in ru.nsu">TopologicalSort</a> - Class in <a href="ru/nsu/package-summary.html">ru.nsu</a></dt>
@@ -185,10 +212,6 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/TopologicalSort.html#%3Cinit%3E()" class="member-name-link">TopologicalSort()</a> - Constructor for class ru.nsu.<a href="ru/nsu/TopologicalSort.html" title="class in ru.nsu">TopologicalSort</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/TopologicalSort.html#topSort(ru.nsu.Graph)" class="member-name-link">topSort(Graph)</a> - Static method in class ru.nsu.<a href="ru/nsu/TopologicalSort.html" title="class in ru.nsu">TopologicalSort</a></dt>
-<dd>
-<div class="block">Implements topological sort via dfs.</div>
-</dd>
 <dt><a href="ru/nsu/AdjacencyListGraph.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyListGraph.html" title="class in ru.nsu">AdjacencyListGraph</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/AdjacencyMatrixGraph.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.<a href="ru/nsu/AdjacencyMatrixGraph.html" title="class in ru.nsu">AdjacencyMatrixGraph</a></dt>
@@ -200,7 +223,7 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/IncidenceMatrixGraph.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.<a href="ru/nsu/IncidenceMatrixGraph.html" title="class in ru.nsu">IncidenceMatrixGraph</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
 </div>
 </div>
 </body>

@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../script.js"></script>
-<script type="text/javascript" src="../../script-dir/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../script-dir/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -120,37 +120,40 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVertex(int)" class="member-name-link">addVertex</a><wbr>(int&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds a vertex to the graph.</div>
+<div class="block">Adds a vertex to the graph if the graph doesn't contain it.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaxVertexNumber()" class="member-name-link">getMaxVertexNumber</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGraphVertices()" class="member-name-link">getGraphVertices</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the number of the maximum node.</div>
+<div class="block">Gets all vertices graph consists.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbors(int)" class="member-name-link">getNeighbors</a><wbr>(int&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a list of all neighbors of a given vertex.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasVertex(int)" class="member-name-link">hasVertex</a><wbr>(int&nbsp;vertex)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertexByIndex(int)" class="member-name-link">getVertexByIndex</a><wbr>(int&nbsp;index)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasVertex(int)" class="member-name-link">hasVertex</a><wbr>(int&nbsp;vertex)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks if graph consists the given vertex.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEdge(int,int)" class="member-name-link">removeEdge</a><wbr>(int&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEdge(int,int)" class="member-name-link">removeEdge</a><wbr>(int&nbsp;source,
  int&nbsp;destination)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes an edge from one vertex to another.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeVertex(int)" class="member-name-link">removeVertex</a><wbr>(int&nbsp;vertex)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeVertex(int)" class="member-name-link">removeVertex</a><wbr>(int&nbsp;vertex)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes a vertex from the graph.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a string representation of the graph.</div>
 </div>
 </div>
@@ -193,7 +196,7 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 <h3>addVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addVertex(int)">Graph</a></code></span></div>
-<div class="block">Adds a vertex to the graph.</div>
+<div class="block">Adds a vertex to the graph if the graph doesn't contain it.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#addVertex(int)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu">Graph</a></code></dd>
@@ -205,7 +208,8 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 <li>
 <section class="detail" id="removeVertex(int)">
 <h3>removeVertex</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span>
+                  throws <span class="exceptions"><a href="NoVertexException.html" title="class in ru.nsu">NoVertexException</a></span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#removeVertex(int)">Graph</a></code></span></div>
 <div class="block">Removes a vertex from the graph.</div>
 <dl class="notes">
@@ -213,6 +217,8 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 <dd><code><a href="Graph.html#removeVertex(int)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu">Graph</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>vertex</code> - the vertex to be removed.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="NoVertexException.html" title="class in ru.nsu">NoVertexException</a></code> - if graph doesn't contain given vertex.</dd>
 </dl>
 </section>
 </li>
@@ -222,7 +228,8 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(int&nbsp;source,
  int&nbsp;destination)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addEdge(int,int)">Graph</a></code></span></div>
-<div class="block">Adds an edge from one vertex to another.</div>
+<div class="block">Adds an edge from one vertex to another. If graph doesn't contain the vertices of an edge
+ they will be added.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#addEdge(int,int)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu">Graph</a></code></dd>
@@ -236,7 +243,8 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 <section class="detail" id="removeEdge(int,int)">
 <h3>removeEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeEdge</span><wbr><span class="parameters">(int&nbsp;source,
- int&nbsp;destination)</span></div>
+ int&nbsp;destination)</span>
+                throws <span class="exceptions"><a href="NoVertexException.html" title="class in ru.nsu">NoVertexException</a></span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#removeEdge(int,int)">Graph</a></code></span></div>
 <div class="block">Removes an edge from one vertex to another.</div>
 <dl class="notes">
@@ -245,6 +253,8 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 <dt>Parameters:</dt>
 <dd><code>source</code> - the vertex where the edge starts.</dd>
 <dd><code>destination</code> - the vertex where the edge ends.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="NoVertexException.html" title="class in ru.nsu">NoVertexException</a></code> - if graph doesn't contain given vertices.</dd>
 </dl>
 </section>
 </li>
@@ -265,22 +275,6 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 </section>
 </li>
 <li>
-<section class="detail" id="toString()">
-<h3>toString</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#toString()">Graph</a></code></span></div>
-<div class="block">Returns a string representation of the graph.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="Graph.html#toString()">toString</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu">Graph</a></code></dd>
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Returns:</dt>
-<dd>a string representation of the graph.</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="hasVertex(int)">
 <h3>hasVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
@@ -297,16 +291,38 @@ implements <a href="Graph.html" title="interface in ru.nsu">Graph</a></span></di
 </section>
 </li>
 <li>
-<section class="detail" id="getMaxVertexNumber()">
-<h3>getMaxVertexNumber</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMaxVertexNumber</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getMaxVertexNumber()">Graph</a></code></span></div>
-<div class="block">Returns the number of the maximum node.</div>
+<section class="detail" id="toString()">
+<h3>toString</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#toString()">Graph</a></code></span></div>
+<div class="block">Returns a string representation of the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#getMaxVertexNumber()">getMaxVertexNumber</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu">Graph</a></code></dd>
+<dd><code><a href="Graph.html#toString()">toString</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu">Graph</a></code></dd>
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 <dt>Returns:</dt>
-<dd>max node's number or -1 if graph is empty.</dd>
+<dd>a string representation of the graph.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVertexByIndex(int)">
+<h3>getVertexByIndex</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></span>&nbsp;<span class="element-name">getVertexByIndex</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getGraphVertices()">
+<h3>getGraphVertices</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">getGraphVertices</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getGraphVertices()">Graph</a></code></span></div>
+<div class="block">Gets all vertices graph consists.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#getGraphVertices()">getGraphVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu">Graph</a></code></dd>
+<dt>Returns:</dt>
+<dd>list of all graph vertices.</dd>
 </dl>
 </section>
 </li>

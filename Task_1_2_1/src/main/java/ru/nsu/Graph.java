@@ -88,4 +88,28 @@ public interface Graph {
      * @return list of all graph vertices.
      */
     List<Integer> getGraphVertices();
+
+    /**
+     * Checks this graph with provided graph for equality.
+     *
+     * @param otherGraph provided graph for comparison.
+     * @return {@code true} if graphs are equals else {@code false}.
+     */
+    default boolean equals(Graph otherGraph) {
+        List<Integer> selfVertices = this.getGraphVertices();
+        List<Integer> otherVertices = otherGraph.getGraphVertices();
+
+        if (!selfVertices.equals(otherVertices)) {
+            return false;
+        }
+        for (int i = 0; i < selfVertices.size(); i++) {
+            List<Integer> selfNeighbors = this.getNeighbors(selfVertices.get(i));
+            List<Integer> otherNeighbors = otherGraph.getNeighbors(otherVertices.get(i));
+
+            if (!selfNeighbors.equals(otherNeighbors)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

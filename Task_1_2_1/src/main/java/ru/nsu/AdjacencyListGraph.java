@@ -86,5 +86,4 @@ public class AdjacencyListGraph implements Graph {
     public List<Integer> getGraphVertices() {
         return new ArrayList<>(adjacencyList.keySet());
     }
-
 }

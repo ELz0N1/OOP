@@ -157,4 +157,44 @@ public class TestAdjacencyListGraph {
         graph.removeVertex(5);
         Assertions.assertEquals("", graph.toString());
     }
+
+    @Test
+    void testEqualsTrue() {
+        graph.addEdge(3, 1);
+        graph.addEdge(2, 3);
+        graph.addEdge(5, 2);
+        graph.addEdge(5, 0);
+        graph.addEdge(4, 0);
+        graph.addEdge(4, 1);
+
+        AdjacencyListGraph otherGraph = new AdjacencyListGraph();
+        otherGraph.addEdge(3, 1);
+        otherGraph.addEdge(2, 3);
+        otherGraph.addEdge(5, 2);
+        otherGraph.addEdge(5, 0);
+        otherGraph.addEdge(4, 0);
+        otherGraph.addEdge(4, 1);
+
+        Assertions.assertTrue(graph.equals(otherGraph));
+    }
+
+    @Test
+    void testEqualsFalse() {
+        graph.addEdge(3, 1);
+        graph.addEdge(2, 3);
+        graph.addEdge(5, 2);
+        graph.addEdge(5, 3);
+        graph.addEdge(5, 0);
+        graph.addEdge(2, 0);
+
+        AdjacencyListGraph otherGraph = new AdjacencyListGraph();
+        otherGraph.addEdge(0, 1);
+        otherGraph.addEdge(0, 2);
+        otherGraph.addEdge(5, 2);
+        otherGraph.addEdge(5, 0);
+        otherGraph.addEdge(4, 0);
+        otherGraph.addEdge(4, 1);
+
+        Assertions.assertFalse(graph.equals(otherGraph));
+    }
 }

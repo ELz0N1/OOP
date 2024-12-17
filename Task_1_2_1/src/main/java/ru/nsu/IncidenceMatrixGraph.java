@@ -10,9 +10,38 @@ import java.util.Map;
  */
 public class IncidenceMatrixGraph implements Graph {
 
+    /**
+     * Class representing an edge in the graph.
+     */
+    private record Edge(int source, int destination) {
+
+        /**
+         * Gets source vertex of edge.
+         *
+         * @return source vertex of edge
+         */
+        public int getSource() {
+            return source;
+        }
+
+        /**
+         * Gets destination vertex of edge.
+         *
+         * @return destination vertex of edge
+         */
+        public int getDestination() {
+            return destination;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + source + " -> " + destination + ")";
+        }
+    }
+
     private final Map<Integer, Integer> vertexIndexMap;
     private final List<Integer> vertices;
-    private final List<int[]> edges;
+    private final List<Edge> edges;
     private int vertexCapacity = 16;
     private int edgesCapacity = 16;
     private int[][] incidenceMatrix = new int[vertexCapacity][edgesCapacity];
@@ -42,7 +71,7 @@ public class IncidenceMatrixGraph implements Graph {
         }
         vertexIndexMap.remove(vertex);
         vertices.remove((Integer) vertex);
-        edges.removeIf(edge -> edge[0] == vertex || edge[1] == vertex);
+        edges.removeIf(edge -> edge.getSource() == vertex || edge.getDestination() == vertex);
         updateIncidenceMatrix();
     }
 
@@ -54,7 +83,7 @@ public class IncidenceMatrixGraph implements Graph {
         if (!hasVertex(destination)) {
             addVertex(destination);
         }
-        edges.add(new int[]{source, destination});
+        edges.add(new Edge(source, destination));
         updateIncidenceMatrix();
     }
 
@@ -66,16 +95,16 @@ public class IncidenceMatrixGraph implements Graph {
         if (!hasVertex(destination)) {
             throw new NoVertexException(destination);
         }
-        edges.removeIf(edge -> edge[0] == source && edge[1] == destination);
+        edges.removeIf(edge -> edge.getSource() == source && edge.getDestination() == destination);
         updateIncidenceMatrix();
     }
 
     @Override
     public List<Integer> getNeighbors(int vertex) {
         List<Integer> neighbors = new ArrayList<>();
-        for (int[] edge : edges) {
-            if (edge[0] == vertex) {
-                neighbors.add(edge[1]);
+        for (Edge edge : edges) {
+            if (edge.getSource() == vertex) {
+                neighbors.add(edge.getDestination());
             }
         }
         return neighbors;
@@ -112,9 +141,9 @@ public class IncidenceMatrixGraph implements Graph {
         incidenceMatrix = new int[vertexCapacity][edgesCapacity];
 
         for (int j = 0; j < numEdges; j++) {
-            int[] edge = edges.get(j);
-            int sourceIndex = vertexIndexMap.get(edge[0]);
-            int destinationIndex = vertexIndexMap.get(edge[1]);
+            Edge edge = edges.get(j);
+            int sourceIndex = vertexIndexMap.get(edge.getSource());
+            int destinationIndex = vertexIndexMap.get(edge.getDestination());
 
             incidenceMatrix[sourceIndex][j] = 1;
             incidenceMatrix[destinationIndex][j] = -1;
